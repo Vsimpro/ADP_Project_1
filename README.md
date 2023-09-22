@@ -4,5 +4,15 @@ Repo for our Application Development Project.
 TODO: Add name + desc.
 
 ## How to run:
-`todo`
+
+Frontend:
+```bash
+cd frontend
+npm start
+```
+
+Backend:
+```bash
+# todo
+```
 
