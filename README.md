@@ -1,2 +1,8 @@
-# ADP_Project_1
-Repo for our Application Development Project
+# Application Development Project
+Repo for our Application Development Project.
+
+TODO: Add name + desc.
+
+## How to run:
+`todo`
+
