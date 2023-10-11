@@ -1,8 +1,10 @@
 /* Imports */
 const cors    = require("cors");
 const express = require("express");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
+const UserModel = require("./models/UserModel.js"); // TODO: Remove this line if not needed here.
 
 /* Modules */
 //TODO: Add if needed
@@ -17,6 +19,7 @@ if ((HOST == undefined) || (PORT == undefined)) {
     console.log( "[!] HOST or PORT not found from .env .. does .env exist?\n..exiting." )
     process.exit(1)
 }
+
 
 
 // Prepare Express:
