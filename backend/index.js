@@ -13,6 +13,8 @@ const UserModel = require("./models/UserModel.js"); // TODO: Remove this line if
 /* Global Variables */
 var HOST = process.env.HOST;
 var PORT = process.env.PORT;
+var MONGODB_URI = process.env.MONGODB_URI;
+
 
 // Check that .env exists:
 if ((HOST == undefined) || (PORT == undefined)) {
@@ -20,6 +22,17 @@ if ((HOST == undefined) || (PORT == undefined)) {
     process.exit(1)
 }
 
+// Create MongoDB connection and check that it works:
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "[!] MongoDB connection error:"));
+db.once("open", () => {
+    console.log("[*] MongoDB connected.")
+});
 
 
 // Prepare Express:
