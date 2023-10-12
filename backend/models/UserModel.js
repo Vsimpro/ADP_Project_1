@@ -17,3 +17,33 @@ const userSchema = new Schema({
 const userModel = model("User", userSchema);
 
 export default userModel;
+
+/* example user document
+request to server // json:
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "secretpassword",
+  "projects": ["Project A", "Project B"],
+  "connections": ["User A", "User B"]
+}
+
+response from server // json:
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "secretpassword",
+    "projects": [
+        "Project A",
+        "Project B"
+    ],
+    "connections": [
+        "User A",
+        "User B"
+    ],
+    "_id": "65285469fc0f35b7f5ad3992",
+    "createdAt": "2023-10-12T20:17:45.410Z",
+    "updatedAt": "2023-10-12T20:17:45.410Z",
+    "__v": 0
+}
+*/

@@ -61,3 +61,18 @@ app.post("/create-user", (request, response) => {
             response.status(400).send(error);
         });
 });
+
+app.get("/get-user/:id", (request, response) => {
+    console.log("[>] GET '/get-user/:id'");
+    console.log("User ID", request.params.id);
+
+    UserModel.findById(request.params.id)
+        .then((user) => {
+            console.log("[*] User found!", user);
+            response.status(200).send(user);
+        })
+        .catch((error) => {
+            console.log("[!] Error finding user", error);
+            response.status(400).send(error);
+        });
+});
