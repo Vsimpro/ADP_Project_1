@@ -1,10 +1,10 @@
 /* Imports */
-const cors    = require("cors");
-const express = require("express");
-const mongoose = require("mongoose");
+import cors from "cors";
+import express, { json } from "express";
+import mongoose from "mongoose";
 require("dotenv").config();
-
-const UserModel = require("./models/UserModel.js"); // TODO: Remove this line if not needed here.
+import db from "./db.js";
+import UserModel from "./models/UserModel.js"; // TODO: Remove this line if not needed here.
 
 /* Modules */
 //TODO: Add if needed
@@ -13,46 +13,50 @@ const UserModel = require("./models/UserModel.js"); // TODO: Remove this line if
 /* Global Variables */
 var HOST = process.env.HOST;
 var PORT = process.env.PORT;
-var MONGODB_URI = process.env.MONGODB_URI;
+
 
 
 // Check that .env exists:
 if ((HOST == undefined) || (PORT == undefined)) {
-    console.log( "[!] HOST or PORT not found from .env .. does .env exist?\n..exiting." )
+    console.log("[!] HOST or PORT not found from .env .. does .env exist?\n..exiting.")
     process.exit(1)
 }
-
-// Create MongoDB connection and check that it works:
-mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "[!] MongoDB connection error:"));
-db.once("open", () => {
-    console.log("[*] MongoDB connected.")
-});
 
 
 // Prepare Express:
 const app = express();
-app.use(express.json());
-app.listen(PORT, function() { 
-    console.log("[*] Server starting on http://" + HOST + ":" + PORT) 
+app.use(json());
+app.listen(PORT, function () {
+    console.log("[*] Server starting on http://" + HOST + ":" + PORT)
 });
 
 
 /* Routes */
-app.get("/", function(request, response) {
+app.get("/", function (request, response) {
     console.log("[>] GET '/'");
-    response.status(200).send("Hello World!"); 
-    return 0; 
+    response.status(200).send("Hello World!");
+    return 0;
 });
 
 // Catch 404, TODO: Show what page is requested.
-app.get("/*", function(request, response) {
+app.get("/*", function (request, response) {
     console.log("[>] GET '/?', no page.");
-    response.status(404).send("Page Not Found."); 
-    return 0; 
+    response.status(404).send("Page Not Found.");
+    return 0;
+});
+
+app.post("/create-user", function (request, response) {
+    console.log("[>] POST '/create-user'");
+    console.log("User data", request.body);
+
+    var newUser = new UserModel(request.body);
+    newUser.save()
+        .then((user) => {
+            console.log("[*] User created!", user);
+            response.status(200).send(user);
+        })
+        .catch((error) => {
+            console.log("[!] Error creating user", error);
+            response.status(400).send(error);
+        });
 });
