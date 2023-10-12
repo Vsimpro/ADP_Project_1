@@ -1,8 +1,9 @@
 /* Imports */
+import dotenv from "dotenv";
+dotenv.config();
+
 import cors from "cors";
 import express, { json } from "express";
-import mongoose from "mongoose";
-require("dotenv").config();
 import db from "./db.js";
 import UserModel from "./models/UserModel.js"; // TODO: Remove this line if not needed here.
 
@@ -26,26 +27,26 @@ if ((HOST == undefined) || (PORT == undefined)) {
 // Prepare Express:
 const app = express();
 app.use(json());
-app.listen(PORT, function () {
+app.listen(PORT, () => {
     console.log("[*] Server starting on http://" + HOST + ":" + PORT)
 });
 
 
 /* Routes */
-app.get("/", function (request, response) {
+app.get("/", (request, response) => {
     console.log("[>] GET '/'");
     response.status(200).send("Hello World!");
     return 0;
 });
 
 // Catch 404, TODO: Show what page is requested.
-app.get("/*", function (request, response) {
-    console.log("[>] GET '/?', no page.");
-    response.status(404).send("Page Not Found.");
-    return 0;
-});
+// app.get("/*", function (request, response) {
+//     console.log("[>] GET '/?', no page.");
+//     response.status(404).send("Page Not Found.");
+//     return 0;
+// });
 
-app.post("/create-user", function (request, response) {
+app.post("/create-user", (request, response) => { 
     console.log("[>] POST '/create-user'");
     console.log("User data", request.body);
 
