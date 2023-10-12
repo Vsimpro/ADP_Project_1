@@ -1,8 +1,10 @@
 /* Imports */
 const cors    = require("cors");
 const express = require("express");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
+const UserModel = require("./models/UserModel.js"); // TODO: Remove this line if not needed here.
 
 /* Modules */
 //TODO: Add if needed
@@ -11,12 +13,26 @@ require("dotenv").config();
 /* Global Variables */
 var HOST = process.env.HOST;
 var PORT = process.env.PORT;
+var MONGODB_URI = process.env.MONGODB_URI;
+
 
 // Check that .env exists:
 if ((HOST == undefined) || (PORT == undefined)) {
     console.log( "[!] HOST or PORT not found from .env .. does .env exist?\n..exiting." )
     process.exit(1)
 }
+
+// Create MongoDB connection and check that it works:
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "[!] MongoDB connection error:"));
+db.once("open", () => {
+    console.log("[*] MongoDB connected.")
+});
 
 
 // Prepare Express:
