@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import commentModel from "./CommentModel.js";
 
 const projectSchema = new Schema({
 	name: { type: String, required: true },
@@ -8,7 +7,7 @@ const projectSchema = new Schema({
 	owner: { type: String, required: true },
 	readWrite: { type: Array, required: true },
 	readOnly: { type: Array, required: false },
-	comments: [{ type: commentModel.schema, required: false }],
+	comments: [{ type: String, required: false }],
 }, {
 	timestamps: true, // creates createdAt and updatedAt fields automatically
 });

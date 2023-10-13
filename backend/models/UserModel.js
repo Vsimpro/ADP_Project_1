@@ -8,8 +8,8 @@ const userSchema = new Schema({
 	name: { type: String, required: true },
 	email: { type: String, required: true, unique: true },
 	password: { type: String, required: true },
-	projects: { type: Array, required: false },
-	connections: { type: Array, required: false },
+	projects: [{ type: String, required: false }],
+	connections: [{ type: String, required: false }]
 }, {
 	timestamps: true, // creates createdAt and updatedAt fields automatically
 });
