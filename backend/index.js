@@ -6,6 +6,7 @@ import cors from "cors";
 import express, { json } from "express";
 import db from "./db.js";
 
+/* Routers */
 import userRouter from "./routes/userRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
 import columnRouter from "./routes/columnRoutes.js";
