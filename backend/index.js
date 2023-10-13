@@ -8,6 +8,10 @@ import db from "./db.js";
 
 import userRouter from "./routes/userRoutes.js";
 import projectRouter from "./routes/projectRoutes.js";
+import columnRouter from "./routes/columnRoutes.js";
+import cardRouter from "./routes/cardRoutes.js";
+import taskRouter from "./routes/taskRoutes.js";
+import commentRouter from "./routes/commentRoutes.js";
 /* Modules */
 //TODO: Add if needed
 
@@ -50,3 +54,7 @@ app.get("/", (request, response) => {
 // routes:
 app.use("/user", userRouter);
 app.use("/project", projectRouter);
+app.use("/column", columnRouter);
+app.use("/card", cardRouter);
+app.use("/task", taskRouter);
+app.use("/comment", commentRouter);
