@@ -4,6 +4,7 @@ import commentModel from "./CommentModel.js";
 const projectSchema = new Schema({
 	name: { type: String, required: true },
 	description: { type: String, required: false },
+    columns: { type: Array, required: false },
 	owner: { type: String, required: true },
 	readWrite: { type: Array, required: true },
 	readOnly: { type: Array, required: false },

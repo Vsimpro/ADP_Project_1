@@ -1,9 +1,10 @@
 import { Schema,model } from "mongoose";
+import cardModel from "./CardModel.js";
 
 const columnSchema = new Schema({
 	order: { type: Number, required: true },
 	name: { type: String, required: true },
-	items: [{ type: String, required: false }],
+	cards: [{ type: cardModel.schema, required: false }],
 }, {
 	timestamps: true, // creates createdAt and updatedAt fields automatically
 });
