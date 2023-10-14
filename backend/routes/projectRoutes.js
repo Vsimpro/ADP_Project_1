@@ -12,7 +12,7 @@ projectRouter.post("/create-project", (request, response) => {
     newProject.save()
         .then((project) => {
             console.log("[*] Project created!", project);
-            response.status(200).send(project);
+            response.status(201).send(project);
         })
         .catch((error) => {
             console.log("[!] Error creating project", error);
@@ -32,7 +32,7 @@ projectRouter.get("/get-project/:id", (request, response) => {
         })
         .catch((error) => {
             console.log("[!] Error finding project", error);
-            response.status(400).send(error);
+            response.status(404).send(error);
         }
     );
 });
@@ -64,7 +64,7 @@ projectRouter.delete("/delete-project/:id", (request, response) => {
     projectModel.findByIdAndDelete(request.params.id)
         .then((project) => {
             console.log("[*] Project deleted!", project);
-            response.status(200).send(project);
+            response.status(204).send(project);
         })
         .catch((error) => {
             console.log("[!] Error deleting project", error);

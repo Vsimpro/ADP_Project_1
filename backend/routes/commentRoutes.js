@@ -12,7 +12,7 @@ commentRouter.post("/create-comment", (request, response) => {
 	newComment.save()
 		.then((comment) => {
 			console.log("[*] Comment created!", comment);
-			response.status(200).send(comment);
+			response.status(201).send(comment);
 		})
 		.catch((error) => {
 			console.log("[!] Error creating comment", error);
@@ -32,7 +32,7 @@ commentRouter.get("/get-comment/:id", (request, response) => {
 		})
 		.catch((error) => {
 			console.log("[!] Error finding comment", error);
-			response.status(400).send(error);
+			response.status(404).send(error);
 		}
 	);
 });
@@ -63,7 +63,7 @@ commentRouter.delete("/delete-comment/:id", (request, response) => {
 	commentModel.findByIdAndDelete(request.params.id)
 		.then((comment) => {
 			console.log("[*] Comment deleted!", comment);
-			response.status(200).send(comment);
+			response.status(204).send(comment);
 		})
 		.catch((error) => {
 			console.log("[!] Error deleting comment", error);

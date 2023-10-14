@@ -12,7 +12,7 @@ taskRouter.post("/create-task", (request, response) => {
 	newTask.save()
 		.then((task) => {
 			console.log("[*] Task created!", task);
-			response.status(200).send(task);
+			response.status(201).send(task);
 		})
 		.catch((error) => {
 			console.log("[!] Error creating task", error);
@@ -32,7 +32,7 @@ taskRouter.get("/get-task/:id", (request, response) => {
 		})
 		.catch((error) => {
 			console.log("[!] Error finding task", error);
-			response.status(400).send(error);
+			response.status(404).send(error);
 		}
 	);
 });
@@ -63,7 +63,7 @@ taskRouter.delete("/delete-task/:id", (request, response) => {
 	taskModel.findByIdAndDelete(request.params.id)
 		.then((task) => {
 			console.log("[*] Task deleted!", task);
-			response.status(200).send(task);
+			response.status(204).send(task);
 		})
 		.catch((error) => {
 			console.log("[!] Error deleting task", error);

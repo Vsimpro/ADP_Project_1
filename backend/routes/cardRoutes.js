@@ -12,7 +12,7 @@ cardRouter.post("/create-card", (request, response) => {
 	newCard.save()
 		.then((card) => {
 			console.log("[*] Card created!", card);
-			response.status(200).send(card);
+			response.status(201).send(card);
 		})
 		.catch((error) => {
 			console.log("[!] Error creating card", error);
@@ -32,7 +32,7 @@ cardRouter.get("/get-card/:id", (request, response) => {
 		})
 		.catch((error) => {
 			console.log("[!] Error finding card", error);
-			response.status(400).send(error);
+			response.status(404).send(error);
 		}
 	);
 });
@@ -63,7 +63,7 @@ cardRouter.delete("/delete-card/:id", (request, response) => {
 	cardModel.findByIdAndDelete(request.params.id)
 		.then((card) => {
 			console.log("[*] Card deleted!", card);
-			response.status(200).send(card);
+			response.status(204).send(card);
 		})
 		.catch((error) => {
 			console.log("[!] Error deleting card", error);

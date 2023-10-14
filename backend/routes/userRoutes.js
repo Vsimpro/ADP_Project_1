@@ -12,7 +12,7 @@ userRouter.post("/create-user", (request, response) => {
     newUser.save()
         .then((user) => {
             console.log("[*] User created!", user);
-            response.status(200).send(user);
+            response.status(201).send(user);
         })
         .catch((error) => {
             console.log("[!] Error creating user", error);
@@ -32,7 +32,7 @@ userRouter.get("/get-user/:id", (request, response) => {
         })
         .catch((error) => {
             console.log("[!] Error finding user", error);
-            response.status(400).send(error);
+            response.status(404).send(error);
         });
 });
 
@@ -61,7 +61,7 @@ userRouter.delete("/delete-user/:id", (request, response) => {
     userModel.findByIdAndDelete(request.params.id)
         .then((user) => {
             console.log("[*] User deleted!", user);
-            response.status(200).send(user);
+            response.status(204).send(user);
         })
         .catch((error) => {
             console.log("[!] Error deleting user", error);
