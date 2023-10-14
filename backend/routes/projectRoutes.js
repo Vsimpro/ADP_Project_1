@@ -21,6 +21,8 @@ projectRouter.post("/create-project", (request, response) => {
 });
 
 /* GET */
+
+// GET project by ID
 projectRouter.get("/get-project/:id", (request, response) => {
     console.log("[>] GET '/get-project/:id'");
     console.log("Project ID", request.params.id);
@@ -33,9 +35,26 @@ projectRouter.get("/get-project/:id", (request, response) => {
         .catch((error) => {
             console.log("[!] Error finding project", error);
             response.status(404).send(error);
-        }
-    );
+        });
 });
+
+// GET projects by user ID
+projectRouter.get("/get-projects-by-user/:id", (request, response) => {
+    const userID = request.params.id;
+    console.log("userID :", userID);
+    console.log("[>] GET '/get-projects-by-user/:id'");
+
+    projectModel.find({ $or: [{ owner: userID }, { readWrite: userID }, { readOnly: userID }] })
+        .then((projects) => {
+            console.log("[*] Projects found!", projects);
+            response.status(200).send(projects);
+        })
+        .catch((error) => {
+            console.log("[!] Error finding projects by userID", error);
+            response.status(404).send(error);
+        });
+});
+
 
 /* PATCH */
 projectRouter.patch("/update-project/:id", (request, response) => {
@@ -51,8 +70,7 @@ projectRouter.patch("/update-project/:id", (request, response) => {
         .catch((error) => {
             console.log("[!] Error updating project", error);
             response.status(400).send(error);
-        }
-    );
+        });
 });
 
 
@@ -69,8 +87,7 @@ projectRouter.delete("/delete-project/:id", (request, response) => {
         .catch((error) => {
             console.log("[!] Error deleting project", error);
             response.status(400).send(error);
-        }
-    );
+        });
 });
 
 export default projectRouter;
