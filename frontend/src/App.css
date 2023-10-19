@@ -1,0 +1,17 @@
+.navbar{
+    padding: 20px;
+}
+
+/* Korttiin liittyvät muotoilut */
+.card{
+    margin: 20px 0;
+}
+.centered-elements{
+    display: flex;
+    justify-content: center;
+}
+.centered-elements button {
+    margin-right: 10px;
+    width: 120px;
+    letter-spacing: 1px;
+  }
