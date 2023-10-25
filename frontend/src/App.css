@@ -35,14 +35,14 @@ body {
   
   .card-buttons {
     display: flex;
-    justify-content: center; /* Centers the buttons horizontally */
-    align-items: center; /* Centers the buttons vertically */
+    justify-content: center;
+    align-items: center; 
     margin-top: 30px;
   }
   
   .card-buttons button {
     width: 240px;
-    margin: 10px; /* Adjust the margin values as needed */
+    margin: 10px; 
   }
   
   
