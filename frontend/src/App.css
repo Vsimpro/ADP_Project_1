@@ -1,17 +1,74 @@
-.navbar{
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #F5F5F5;
+    padding: 20px 0;
+  }
+  .container{
+    max-width: 850px;
+    min-width: 300px;
+  }
+
+  .main-content {
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .navbar{
     padding: 20px;
 }
 
-/* Korttiin liittyvät muotoilut */
-.card{
+  .card {
     margin: 20px 0;
-}
-.centered-elements{
-    display: flex;
-    justify-content: center;
-}
-.centered-elements button {
-    margin-right: 10px;
-    width: 120px;
-    letter-spacing: 1px;
   }
+  
+  .card-select {
+    transition: border 0.15s;
+    cursor: pointer;
+    max-width: 800px;
+    min-width: 200px;
+  }
+  
+  .card-select:hover {
+    border: 1px solid black;
+  }
+  
+  .card-buttons {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    align-items: center; /* Centers the buttons vertically */
+    margin-top: 30px;
+  }
+  
+  .card-buttons button {
+    width: 240px;
+    margin: 10px; /* Adjust the margin values as needed */
+  }
+  
+  
+  .list-group-item {
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  
+  .list-group-item:hover {
+    background-color: #F5F5F5;
+  }
+  
+  .crossed-out {
+    text-decoration: line-through;
+    color: rgb(143, 143, 143);
+  }
+
+  @media (max-width: 767px) {
+   
+    body{
+        padding: 10px;
+    }
+    .main-content {
+        background-color: white;
+        margin: 10px;
+        padding: 10px;
+      }
+  }
+  
