@@ -12,7 +12,7 @@ columnRouter.post("/create-column", (request, response) => {
 	newColumn.save()
 		.then((column) => {
 			console.log("[*] Column created!", column);
-			response.status(200).send(column);
+			response.status(201).send(column);
 		})
 		.catch((error) => {
 			console.log("[!] Error creating column", error);
@@ -32,7 +32,7 @@ columnRouter.get("/get-column/:id", (request, response) => {
 		})
 		.catch((error) => {
 			console.log("[!] Error finding column", error);
-			response.status(400).send(error);
+			response.status(404).send(error);
 		}
 	);
 });
@@ -63,7 +63,7 @@ columnRouter.delete("/delete-column/:id", (request, response) => {
 	columnModel.findByIdAndDelete(request.params.id)
 		.then((column) => {
 			console.log("[*] Column deleted!", column);
-			response.status(200).send(column);
+			response.status(204).send(column);
 		})
 		.catch((error) => {
 			console.log("[!] Error deleting column", error);
