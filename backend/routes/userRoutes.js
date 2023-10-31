@@ -41,6 +41,9 @@ userRouter.post("/login", (request, response) => {
 
             bcrypt.compare(request.body.password, user.password)
                 .then((result) => {
+                    if (!result){
+                        throw new Error("Passwords don't match!");
+                    }
                     console.log("[*] Passwords match!");
                     response.status(200).send(user);
                 })
