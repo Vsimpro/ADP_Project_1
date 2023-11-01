@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './LoginPage.css'
 
-const LoginPage = (props) => {
+const LoginPage = ({ onFormSwitch, setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
@@ -14,8 +14,9 @@ const LoginPage = (props) => {
         'Content-Type': 'application/json', // Set the Content-Type header
       },
       body: JSON.stringify({
-        email,
-        pass,
+        email: email,
+        password: pass,
+        name: email,
       })
     })
       .then(response => {
@@ -26,6 +27,8 @@ const LoginPage = (props) => {
       })
       .then(data => {
         // Handle the response data here
+        localStorage.setItem('id', JSON.stringify(data._id))
+        setIsLoggedIn(true)
       })
       .catch(error => {
         console.error('Fetch error:', error);
@@ -42,7 +45,7 @@ const LoginPage = (props) => {
         <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="*********" id="password" name="password" />
         <button type="submit">Log In</button>
       </form>
-      <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
+      <button className="link-btn" onClick={() => onFormSwitch('register')}>Don't have an account? Register here.</button>
     </div>
   )
 }
