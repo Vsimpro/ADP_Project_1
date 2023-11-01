@@ -52,6 +52,9 @@ app.get("/", (request, response) => {
 //     return 0;
 // });
 
+// CORS:
+app.use(cors());
+
 // routes:
 app.use("/user", userRouter);
 app.use("/project", projectRouter);

@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 
-export const Register = (props) => {
+const Register = (props) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [name, setName] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
+
+    fetch('localhost:8123/create-user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: {
+        email,
+        pass,
+        name
+      }
+    })
   }
 
   return (
@@ -15,7 +26,7 @@ export const Register = (props) => {
       <h2>Register</h2>
       <form className="register-form" onSubmit={handleSubmit}>
         <label htmlFor="name">Full name</label>
-        <input value={name} name="name" id="name" placeholder="full name" />
+        <input value={name} name="name" id="name" placeholder="full name" onChange={(e) => setName(e.target.value)} />
         <label htmlFor="email">Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@example.com" id="email" name="email" />
         <label htmlFor="password">Password</label>
@@ -26,3 +37,5 @@ export const Register = (props) => {
     </div >
   )
 }
+
+export default Register
