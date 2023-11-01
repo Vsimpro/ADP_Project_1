@@ -1,4 +1,5 @@
 import './App.css';
+import React from "react";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 import LoginPage from './components/Login-Resolve-Later/LoginPage'
@@ -36,5 +37,6 @@ function App() {
       }
     </div>
   );
-}
+};
+
 export default App;

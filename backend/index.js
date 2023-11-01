@@ -37,6 +37,8 @@ app.listen(PORT, () => {
     console.log("[*] Server starting on http://" + HOST + ":" + PORT)
 });
 
+// CORS:
+app.use(cors());
 
 /* Routes */
 app.get("/", (request, response) => {
