@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Register = (props) => {
+const Register = ({ onFormSwitch, setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [name, setName] = useState('');
@@ -8,17 +8,30 @@ const Register = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('localhost:8123/create-user', {
+    fetch('http://localhost:8123/user/create-user', { // Added "http://"
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json', // Set the Content-Type header
       },
-      body: {
-        email,
-        pass,
-        name
-      }
+      body: JSON.stringify({
+        email: email,
+        password: pass,
+        name: email,
+      })
     })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        localStorage.setItem('id', JSON.stringify(data._id))
+        setIsLoggedIn(true)
+      })
+      .catch(error => {
+        console.error('Fetch error:', error);
+      });
   }
 
   return (
@@ -31,9 +44,9 @@ const Register = (props) => {
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@example.com" id="email" name="email" />
         <label htmlFor="password">Password</label>
         <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="*********" id="password" name="password" />
-        <button type="submit">Log In</button>
+        <button type="submit">Register</button>
       </form>
-      <button onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
+      <button onClick={() => onFormSwitch('login')}>Already have an account? Login here.</button>
     </div >
   )
 }
