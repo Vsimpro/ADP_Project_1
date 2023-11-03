@@ -45,7 +45,7 @@ userRouter.post("/login", (request, response) => {
                         throw new Error("Passwords don't match!");
                     }
                     console.log("[*] Passwords match!");
-                    response.status(200).send(user);
+                    response.status(200).send(user._id);
                 })
                 .catch((error) => {
                     console.log("[!] Passwords don't match!", error);
