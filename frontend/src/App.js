@@ -2,8 +2,8 @@ import './App.css';
 import React from "react";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
-import LoginPage from './components/Login-Resolve-Later/LoginPage'
-import Register from './components/Login-Resolve-Later/Register'
+import LoginPage from './components/LoginPage'
+import Register from './components/Register'
 import { useState, useEffect } from 'react';
 
 const listData = [
