@@ -1,6 +1,11 @@
 import React from 'react';
 
 function Navbar() {
+  const handleLogout = () => {
+    localStorage.removeItem("id");
+    window.location.href = '/';
+  }
+
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
@@ -19,7 +24,7 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="/">Eka linkki</a>
+              <a className="nav-link" href="/">Home</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/about">Toka linkki</a>
@@ -28,7 +33,7 @@ function Navbar() {
               <a className="nav-link" href="/about">jne</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/contact">Log Out</a>
+              <a className="nav-link" href='/' onClick={handleLogout}>Log Out</a>
             </li>
           </ul>
         </div>
