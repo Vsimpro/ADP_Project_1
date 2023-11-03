@@ -26,7 +26,7 @@ const Register = ({ onFormSwitch, setIsLoggedIn }) => {
         return response.json();
       })
       .then(data => {
-        localStorage.setItem('id', JSON.stringify(data._id))
+        localStorage.setItem('id', JSON.stringify(data))
         setIsLoggedIn(true)
       })
       .catch(error => {

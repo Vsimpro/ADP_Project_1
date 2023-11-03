@@ -26,7 +26,7 @@ const LoginPage = ({ onFormSwitch, setIsLoggedIn }) => {
       })
       .then(data => {
         // Handle the response data here
-        localStorage.setItem('id', JSON.stringify(data._id))
+        localStorage.setItem('id', JSON.stringify(data))
         setIsLoggedIn(true)
       })
       .catch(error => {
