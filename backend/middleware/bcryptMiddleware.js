@@ -1,5 +1,4 @@
 import bcrypt, { compare } from "bcrypt";
-import e from "express";
 
 const hashPassword = (request, response, next) => {
 	const { password } = request.body;
