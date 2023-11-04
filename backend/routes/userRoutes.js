@@ -1,6 +1,7 @@
 import express from "express";
 import userModel from "../models/UserModel.js";
 import bcrypt from "bcrypt";
+import { hashPassword, comparePassword } from "../middleware/bcryptMiddleware.js";
 
 const userRouter = express.Router();
 
@@ -9,51 +10,50 @@ const userRouter = express.Router();
 userRouter.post("/create-user", (request, response) => {
     console.log("[>] POST '/create-user'");
 
-    // Hash password
-    const { password } = request.body;
-    const saltRounds = 10;
-
-    bcrypt.hash(password, saltRounds)
-        .then((hash) => {
-            console.log("[*] Password hashed!");
-            request.body.password = hash;
-
-            var newUser = new userModel(request.body);
-            return newUser.save();
-        })
-        .then((user) => {
-            console.log("[*] User created!", user._id);
-            response.status(201).send(user);
-        })
-        .catch((error) => {
-            console.log("[!] Error creating user", error);
-            response.status(400).send(error);
-        });
+    hashPassword(request, response, () => {
+        // Salasana on nyt hashattu
+        var newUser = new userModel(request.body);
+        return newUser.save()
+            .then((user) => {
+                console.log("[*] User created!", user._id);
+                //palautetaan clientille pelkkä id jolla voidaan hakea loput tiedot
+                response.status(201).send(user._id);
+            })
+            .catch((error) => {
+                if (error.code === 11000) {
+                    console.log("[!] Email already exists");
+                    response.status(409).send("Email already exists");
+                } else {
+                    console.log("[!] Error creating user", error);
+                    response.status(400).send(error);
+                }
+            })
+    });
 });
 
 // Route for logging in a user
 userRouter.post("/login", (request, response) => {
     console.log("[>] POST '/login'");
 
-    userModel.findOne({ email: request.body.email })
-        .then((user) => {
-            console.log("[*] User found!", user._id);
+    const { email, password } = request.body;
 
-            bcrypt.compare(request.body.password, user.password)
-                .then((result) => {
-                    if (!result){
-                        throw new Error("Passwords don't match!");
-                    }
-                    console.log("[*] Passwords match!");
+    userModel.findOne({ email })
+        .then((user) => {
+            if (!user) {
+                console.log("[!] User not found");
+                response.status(401).send("User not found");
+            } else {
+                console.log("[*] User found!", user._id);
+                request.body = { password, hash: user.password };
+                comparePassword(request, response, () => {
+                    // Salasanat vastaavat
+                    //palautetaan clientille pelkkä id jolla voidaan hakea loput tiedot
                     response.status(200).send(user._id);
-                })
-                .catch((error) => {
-                    console.log("[!] Passwords don't match!", error);
-                    response.status(401).send(error);
                 });
+            }
         })
         .catch((error) => {
-            console.log("[!] User doesn't exist or passwords don't match!", error);
+            console.log("[!] Error logging in", error);
             response.status(400).send(error);
         });
 });
