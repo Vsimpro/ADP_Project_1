@@ -1,4 +1,4 @@
-import bcrypt, { compare } from "bcrypt";
+import bcrypt from "bcrypt";
 
 const hashPassword = (request, response, next) => {
 	const { password } = request.body;

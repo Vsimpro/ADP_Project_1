@@ -1,6 +1,5 @@
 import express from "express";
 import userModel from "../models/UserModel.js";
-import bcrypt from "bcrypt";
 import { hashPassword, comparePassword } from "../middleware/bcryptMiddleware.js";
 
 const userRouter = express.Router();
