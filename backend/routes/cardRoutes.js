@@ -37,6 +37,25 @@ cardRouter.get("/get-card/:id", (request, response) => {
 	);
 });
 
+cardRouter.get("/get-all-cards/:id", (request, response) => {
+	console.log("[>] GET '/get-all-cards/:id'");
+	console.log("User ID", request.params.id);
+
+	cardModel.find({ userId: request.params.id })
+		.then((cards) => {
+			if (cards.length === 0) {
+				throw new Error("No cards found!");
+			}
+			console.log("[*] Cards found!", cards);
+			response.status(200).send(cards);
+		})
+		.catch((error) => {
+			console.log("[!] Error finding cards", error);
+			response.status(404).send(error);
+		}
+	);
+});
+
 /* PATCH */
 cardRouter.patch("/update-card/:id", (request, response) => {
 	console.log("[>] PATCH '/update-card/:id'");

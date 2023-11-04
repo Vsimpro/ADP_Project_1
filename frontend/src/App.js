@@ -1,48 +1,19 @@
 import './App.css';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 import LoginPage from './components/LoginPage'
 import Register from './components/Register'
-import { useState, useEffect } from 'react';
 
-const listData = [
-  {
-    category: "Shopping List",
-    title: "Breakfast Items",
-    listItems: ["🥚 Eggs", "🥓 Bacon", "🍞 Toast"],
-  },
-  {
-    category: "Recipes",
-    title: "Guacamole",
-    description: "Fresh and creamy avocado dip with tomatoes and spices.",
-    listItems: [
-      "3 ripe avocados",
-      "1 medium tomato, diced",
-      "1/2 cup red onion, finely chopped",
-      "2 cloves garlic, minced",
-      "1 lime, juiced",
-    ],
-  },
-  {
-    category: "Recipes",
-    title: "Caesar Salad",
-    description: "A classic Caesar salad with crisp romaine lettuce, croutons, and creamy dressing.",
-    listItems: [
-      "1 head romaine lettuce",
-      "1 cup croutons",
-      "1/4 cup grated Parmesan cheese",
-      "1/4 cup Caesar dressing",
-      "1 clove garlic, minced",
-      "1 lemon, juiced",
-      "Salt and black pepper to taste",
-    ],
-  },
-];
+const HOST = "localhost";
+const PORT = "8123";
+
+
 
 function App() {
   const [currentForm, setCurrentForm] = useState('login');
   const [isLoggedIn, setisLoggedIn] = useState(false)
+  const [listData, setListData] = useState([]);
 
   const toggleForm = (formName) => {
     setCurrentForm(formName);
@@ -52,6 +23,20 @@ function App() {
     const id = localStorage.getItem('id')
     if (id) {
       setisLoggedIn(true)
+      fetch(`http://${HOST}:${PORT}/card/get-all-cards/${JSON.parse(id)}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json(); // Käsittelee vastauksen JSON-muodossa
+        })
+        .then((data) => {
+          console.log(data);
+          setListData(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }, [])
 
@@ -73,3 +58,36 @@ function App() {
 };
 
 export default App;
+// [
+//   {
+//     category: "Shopping List",
+//     title: "Breakfast Items",
+//     listItems: ["🥚 Eggs", "🥓 Bacon", "🍞 Toast"],
+//   },
+//   {
+//     category: "Recipes",
+//     title: "Guacamole",
+//     description: "Fresh and creamy avocado dip with tomatoes and spices.",
+//     listItems: [
+//       "3 ripe avocados",
+//       "1 medium tomato, diced",
+//       "1/2 cup red onion, finely chopped",
+//       "2 cloves garlic, minced",
+//       "1 lime, juiced",
+//     ],
+//   },
+//   {
+//     category: "Recipes",
+//     title: "Caesar Salad",
+//     description: "A classic Caesar salad with crisp romaine lettuce, croutons, and creamy dressing.",
+//     listItems: [
+//       "1 head romaine lettuce",
+//       "1 cup croutons",
+//       "1/4 cup grated Parmesan cheese",
+//       "1/4 cup Caesar dressing",
+//       "1 clove garlic, minced",
+//       "1 lemon, juiced",
+//       "Salt and black pepper to taste",
+//     ],
+//   },
+// ];
