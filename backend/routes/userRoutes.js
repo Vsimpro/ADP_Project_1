@@ -1,7 +1,7 @@
 import express from "express";
 import userModel from "../models/UserModel.js";
 import { hashPassword, comparePassword } from "../middleware/bcryptMiddleware.js";
-import { generateJWT, validateJWT } from "../middleware/jwtMiddleware.js";
+import { generateJWT, validateJWT, validateOwnership } from "../middleware/jwtMiddleware.js";
 
 const userRouter = express.Router();
 
@@ -63,11 +63,13 @@ userRouter.get("/get-user/:id", (request, response) => {
     console.log("[>] GET '/get-user/:id'");
     console.log("User ID", request.params.id);
     
+    var id = request.params.id
     try {
-        var token = request.cookies["Bearer"]
-        var valid = validateJWT( token )
+        let token = request.cookies["Bearer"]
+        let valid = validateJWT( token )
+        let correct_id = validateOwnership(token, id)
 
-        if (!valid) {
+        if ((!valid) || (!correct_id)) {
             response.status(401).send("Invalid token.");
             return;
         }           
@@ -95,11 +97,13 @@ userRouter.patch("/update-user/:id", (request, response) => {
     console.log("User ID", request.params.id);
     console.log("User data", request.body);
 
+    var id = request.params.id
     try {
-        var token = request.cookies["Bearer"]
-        var valid = validateJWT( token )
+        let token = request.cookies["Bearer"]
+        let valid = validateJWT( token )
+        let correct_id = validateOwnership(token, id)
 
-        if (!valid) {
+        if ((!valid) || (!correct_id)) {
             response.status(401).send("Invalid token.");
             return;
         }           
@@ -108,7 +112,7 @@ userRouter.patch("/update-user/:id", (request, response) => {
         console.log("[!] Could not validate token", error)
         response.status(401).send("Invalid token.");
         return;
-    }   
+    }     
     
 
     userModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
@@ -127,11 +131,13 @@ userRouter.delete("/delete-user/:id", (request, response) => {
     console.log("[>] DELETE '/delete-user/:id'");
     console.log("User ID", request.params.id);
 
+    var id = request.params.id
     try {
-        var token = request.cookies["Bearer"]
-        var valid = validateJWT( token )
+        let token = request.cookies["Bearer"]
+        let valid = validateJWT( token )
+        let correct_id = validateOwnership(token, id)
 
-        if (!valid) {
+        if ((!valid) || (!correct_id)) {
             response.status(401).send("Invalid token.");
             return;
         }           
@@ -140,7 +146,7 @@ userRouter.delete("/delete-user/:id", (request, response) => {
         console.log("[!] Could not validate token", error)
         response.status(401).send("Invalid token.");
         return;
-    }   
+    }     
     
     userModel.findByIdAndDelete(request.params.id)
         .then((user) => {

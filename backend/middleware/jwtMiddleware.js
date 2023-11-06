@@ -16,8 +16,9 @@ const generateJWT = (id) => {
 }
 
 const validateJWT = (token) => { 
+    let verified = false;
     try { 
-        let  verified = jwt.verify(token, SECRET); 
+        verified = jwt.verify(token, SECRET); 
         if (!verified) { 
             return false;
         }
@@ -30,4 +31,23 @@ const validateJWT = (token) => {
     return true;
 } 
 
-export { generateJWT, validateJWT };
+const validateOwnership = (token, id) => {
+    let token_id = ""
+    let decoded_token = ""
+    try {
+        decoded_token = jwt.verify(token, SECRET);
+        token_id = decoded_token["data"]["_id"]
+
+        if (id != token_id) {
+            return false;
+        }    
+
+    } catch (error) {
+        console.log( error )
+        return false;
+    }
+
+    return true;
+}
+
+export { generateJWT, validateJWT, validateOwnership };
