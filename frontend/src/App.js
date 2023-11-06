@@ -23,6 +23,9 @@ function App() {
     const id = localStorage.getItem('id')
     if (id) {
       setisLoggedIn(true)
+      // tämä hakee datan tietokannasta
+      // tämän saa poistaa/muokata/ tehdä mitä vaan
+      // eetun aivopieruilua
       fetch(`http://${HOST}:${PORT}/card/get-all-cards/${JSON.parse(id)}`)
         .then((response) => {
           if (!response.ok) {
@@ -37,6 +40,7 @@ function App() {
         .catch((error) => {
           console.log(error);
         });
+        // tähän lopppuu aivopieruilut
     }
   }, [])
 
