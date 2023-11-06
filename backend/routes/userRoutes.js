@@ -17,7 +17,7 @@ userRouter.post("/create-user", (request, response) => {
             .then((user) => {
                 console.log("[*] User created!", user._id);
                 //palautetaan clientille JWT, jossa pelkkä ID.
-                response.status(201).send( generateJWT(user._id) );
+                response.status(201).send( { id : user._id, token : generateJWT(user._id) } );
             })
             .catch((error) => {
                 if (error.code === 11000) {
@@ -48,7 +48,7 @@ userRouter.post("/login", (request, response) => {
                 comparePassword(request, response, () => {
                     // Salasanat vastaavat
                     // palautetaan clientille pelkkä id jolla voidaan hakea loput tiedot
-                    response.status(200).send( generateJWT(user._id) );
+                    response.status(200).send( { id : user._id, token : generateJWT(user._id) } );
                 });
             }
         })
@@ -113,7 +113,6 @@ userRouter.patch("/update-user/:id", (request, response) => {
         response.status(401).send("Invalid token.");
         return;
     }     
-    
 
     userModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
         .then((user) => {

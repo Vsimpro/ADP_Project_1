@@ -26,7 +26,8 @@ const Register = ({ onFormSwitch, setIsLoggedIn }) => {
         return response.json();
       })
       .then(data => {
-        localStorage.setItem('id', JSON.stringify(data))
+        localStorage.setItem('id', JSON.stringify(data.id));
+        document.cookie = 'Bearer=' + JSON.stringify(data.token);
         setIsLoggedIn(true)
       })
       .catch(error => {
