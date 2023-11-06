@@ -1,6 +1,7 @@
 import express from "express";
 import userModel from "../models/UserModel.js";
 import { hashPassword, comparePassword } from "../middleware/bcryptMiddleware.js";
+import { generateJWT, validateJWT } from "../middleware/jwtMiddleware.js";
 
 const userRouter = express.Router();
 
@@ -15,8 +16,8 @@ userRouter.post("/create-user", (request, response) => {
         return newUser.save()
             .then((user) => {
                 console.log("[*] User created!", user._id);
-                //palautetaan clientille pelkkä id jolla voidaan hakea loput tiedot
-                response.status(201).send(user._id);
+                //palautetaan clientille JWT, jossa pelkkä ID.
+                response.status(201).send( generateJWT(user._id) );
             })
             .catch((error) => {
                 if (error.code === 11000) {
@@ -46,8 +47,8 @@ userRouter.post("/login", (request, response) => {
                 request.body = { password, hash: user.password };
                 comparePassword(request, response, () => {
                     // Salasanat vastaavat
-                    //palautetaan clientille pelkkä id jolla voidaan hakea loput tiedot
-                    response.status(200).send(user._id);
+                    // palautetaan clientille pelkkä id jolla voidaan hakea loput tiedot
+                    response.status(200).send( generateJWT(user._id) );
                 });
             }
         })
@@ -61,7 +62,22 @@ userRouter.post("/login", (request, response) => {
 userRouter.get("/get-user/:id", (request, response) => {
     console.log("[>] GET '/get-user/:id'");
     console.log("User ID", request.params.id);
+    
+    try {
+        var token = request.cookies["Bearer"]
+        var valid = validateJWT( token )
 
+        if (!valid) {
+            response.status(401).send("Invalid token.");
+            return;
+        }           
+
+    } catch (error) {
+        console.log("[!] Could not validate token", error)
+        response.status(401).send("Invalid token.");
+        return;
+    }   
+    
     userModel.findById(request.params.id)
         .then((user) => {
             console.log("[*] User found!", user._id);
@@ -79,6 +95,22 @@ userRouter.patch("/update-user/:id", (request, response) => {
     console.log("User ID", request.params.id);
     console.log("User data", request.body);
 
+    try {
+        var token = request.cookies["Bearer"]
+        var valid = validateJWT( token )
+
+        if (!valid) {
+            response.status(401).send("Invalid token.");
+            return;
+        }           
+
+    } catch (error) {
+        console.log("[!] Could not validate token", error)
+        response.status(401).send("Invalid token.");
+        return;
+    }   
+    
+
     userModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
         .then((user) => {
             console.log("[*] User updated!", user);
@@ -95,6 +127,21 @@ userRouter.delete("/delete-user/:id", (request, response) => {
     console.log("[>] DELETE '/delete-user/:id'");
     console.log("User ID", request.params.id);
 
+    try {
+        var token = request.cookies["Bearer"]
+        var valid = validateJWT( token )
+
+        if (!valid) {
+            response.status(401).send("Invalid token.");
+            return;
+        }           
+
+    } catch (error) {
+        console.log("[!] Could not validate token", error)
+        response.status(401).send("Invalid token.");
+        return;
+    }   
+    
     userModel.findByIdAndDelete(request.params.id)
         .then((user) => {
             console.log("[*] User deleted!", user._id);

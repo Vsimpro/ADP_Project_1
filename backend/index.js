@@ -1,9 +1,10 @@
 /* Imports */
+import cors from "cors";
 import dotenv from "dotenv";
+import express, { json } from "express";
+import cookieParser from "cookie-parser";
 dotenv.config();
 
-import cors from "cors";
-import express, { json } from "express";
 import db from "./db.js";
 
 /* Routers */
@@ -33,6 +34,7 @@ if ((HOST == undefined) || (PORT == undefined)) {
 // Prepare Express:
 const app = express();
 app.use(json());
+app.use(cookieParser());
 app.listen(PORT, () => {
     console.log("[*] Server starting on http://" + HOST + ":" + PORT)
 });
@@ -54,8 +56,6 @@ app.get("/", (request, response) => {
 //     return 0;
 // });
 
-// CORS:
-app.use(cors());
 
 // routes:
 app.use("/user", userRouter);
