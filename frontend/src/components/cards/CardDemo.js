@@ -23,13 +23,14 @@ const CardDemo = ({ item }) => {
 
   return (
     <div className={`card ${isClicked ? 'card-active' : ''}`}>
-      <div className="card-header color" onClick={openCard}>Klikkaa kortti tästä auki</div>
+      <div className="card-header color" onClick={openCard}>{item.category} (klikkaa tästä auki)</div>
       <div className="card-body">
+      <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
+      <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
 
         {isClicked && (
           <div>
-            <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
-            <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
+            
             <ul className="list-group list-group-flush">
             {item.listItems.map((list, index) => (
               <li key={index} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{list}</li>
