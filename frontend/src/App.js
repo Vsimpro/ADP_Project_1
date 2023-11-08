@@ -1,11 +1,11 @@
 import './App.css';
-import './components/cards/EditableCard.css';
+import './components/cards/cardDemo.css';
 import React, { useState, useEffect } from "react";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 import LoginPage from './components/LoginPage'
 import Register from './components/Register'
-import EditableCard from './components/cards/EditableCard';
+import CardDemo from './components/cards/CardDemo';
 
 const HOST = "localhost";
 const PORT = "8123";
@@ -56,11 +56,18 @@ function App() {
               <Card key={index} item={item} />
              
             ))}
-
-            
-            
           </div>
-          <EditableCard />
+
+          {/*saaran testit alkaa tästä */}
+
+          <div id="cards-container">
+            {listData.map((item, index) => (
+              <CardDemo key={index} item={item} />
+             
+            ))}
+          </div>
+          {/*saaran testit loppuu tähän */}
+
         </div>
           : currentForm === 'login' ? <LoginPage onFormSwitch={toggleForm} setIsLoggedIn={setisLoggedIn} /> : <Register onFormSwitch={toggleForm} setIsLoggedIn={setisLoggedIn} />
       }

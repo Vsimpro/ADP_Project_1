@@ -1,0 +1,22 @@
+.card-active{
+   border: 2px solid rgb(255, 145, 0);
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+  }
+
+  .demobtn{
+    width: 120px;
+  }
+.active-field{
+    background-color: rgb(250, 249, 216);
+}
+
+.card-header.color{
+  background-color: rgb(255, 213, 188);
+  cursor: pointer;
+}

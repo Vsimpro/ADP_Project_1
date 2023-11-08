@@ -6,8 +6,9 @@ body {
   .container{
     max-width: 850px;
     min-width: 300px;
+  
   }
-
+  
   .main-content {
     background-color: white;
     margin: 20px;
@@ -18,9 +19,18 @@ body {
     padding: 20px;
 }
 
+
+.cards-container {
+  display: flex;
+  justify-content: center; /* Horizontally center the cards within the container */
+  align-items: center; /* Vertically center the cards within the container */
+}
+
+
   .card {
     margin: 20px 0;
-    color: #020202;
+    color: #000000;
+    text-align: left; 
   }
   
   .card-select {
