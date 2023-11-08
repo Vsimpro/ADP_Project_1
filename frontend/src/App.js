@@ -1,9 +1,11 @@
 import './App.css';
+import './components/cards/EditableCard.css';
 import React, { useState, useEffect } from "react";
 import Navbar from './components/Navbar';
 import Card from './components/Card';
 import LoginPage from './components/LoginPage'
 import Register from './components/Register'
+import EditableCard from './components/cards/EditableCard';
 
 const HOST = "localhost";
 const PORT = "8123";
@@ -52,8 +54,13 @@ function App() {
           <div id="cards-container">
             {listData.map((item, index) => (
               <Card key={index} item={item} />
+             
             ))}
+
+            
+            
           </div>
+          <EditableCard />
         </div>
           : currentForm === 'login' ? <LoginPage onFormSwitch={toggleForm} setIsLoggedIn={setisLoggedIn} /> : <Register onFormSwitch={toggleForm} setIsLoggedIn={setisLoggedIn} />
       }
