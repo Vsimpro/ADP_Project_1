@@ -1,6 +1,6 @@
 import express from 'express';
 import projectModel from '../models/ProjectModel.js';
-import { emitProjectUpdate } from '../controller/socket.js';
+import { handleSocketConnections } from '../controller/socket.js';
 
 const projectRouter = express.Router();
 
@@ -66,7 +66,7 @@ projectRouter.patch("/update-project/:id", (request, response) => {
     projectModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
         .then((project) => {
             // Lähetä päivitys kaikille projektin käyttäjille:
-            emitProjectUpdate(request.params.id);
+            handleSocketConnections.emitProjectUpdate(request.params.id);
 
             console.log("[*] Project updated!", project);
             response.status(200).send(project);
