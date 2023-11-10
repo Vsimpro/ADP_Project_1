@@ -1,6 +1,63 @@
-.card-active{
-   border: 2px solid rgb(255, 145, 0);
+#cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
 }
+
+.card {
+  width: 600px;
+  margin: 20px 0;
+  color: #000000;
+  text-align: left;
+  max-height: 200px;
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.card-active {
+  max-height: 1000px;
+}
+
+.card-select {
+    transition: border 0.15s;
+    cursor: pointer;
+    max-width: 800px;
+    min-width: 200px;
+  }
+  
+.card-select:hover {
+    border: 1px solid black;
+  }
+  
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 30px;
+  }
+  
+.card-buttons button {
+    width: 240px;
+    margin: 10px; 
+  }
+  
+  
+ .list-group-item {
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  
+.list-group-item:hover {
+    background-color: #F5F5F5;
+  }
+  
+.crossed-out {
+    text-decoration: line-through;
+    color: rgb(143, 143, 143);
+  }
+
 
 .buttons-container {
     display: flex;
@@ -9,14 +66,22 @@
     margin: 20px;
   }
 
-  .demobtn{
+.demobtn{
     width: 120px;
   }
-.active-field{
-    background-color: rgb(250, 249, 216);
-}
 
 .card-header.color{
   background-color: rgb(204, 159, 255);
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.card-header.color:hover{
+  background-color: rgb(255, 236, 202);
+}
+.editablecontent {
+  transition: all 0.3s ease; /* Adjust the duration and easing function as needed */
+}
+
+.editablecontent.active-field {
+  background-color: rgb(225, 255, 255)
 }

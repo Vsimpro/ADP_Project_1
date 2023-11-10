@@ -2,7 +2,6 @@ import './App.css';
 import './components/cards/cardDemo.css';
 import React, { useState, useEffect } from "react";
 import Navbar from './components/Navbar';
-import Card from './components/Card';
 import LoginPage from './components/LoginPage'
 import Register from './components/Register'
 import CardDemo from './components/cards/CardDemo';
@@ -49,24 +48,15 @@ function App() {
   return (
     <div className="App">
       {
-        isLoggedIn ? <div className="container p-3">
+        isLoggedIn ? <div className="container">
           <Navbar />
-          <div id="cards-container">
-            {listData.map((item, index) => (
-              <Card key={index} item={item} />
-             
-            ))}
-          </div>
-
-          {/*saaran testit alkaa tästä */}
-
+    
           <div id="cards-container">
             {listData.map((item, index) => (
               <CardDemo key={index} item={item} />
              
             ))}
           </div>
-          {/*saaran testit loppuu tähän */}
 
         </div>
           : currentForm === 'login' ? <LoginPage onFormSwitch={toggleForm} setIsLoggedIn={setisLoggedIn} /> : <Register onFormSwitch={toggleForm} setIsLoggedIn={setisLoggedIn} />

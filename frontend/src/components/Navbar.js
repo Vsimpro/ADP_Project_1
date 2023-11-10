@@ -8,8 +8,14 @@ function Navbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand" href="/">To Do App</a>
+    <nav className="navbar navbar-dark bg-dark fixed-top">
+      <div className="container-fluid">
+        <div className="d-flex">
+          <a className="navbar-brand" href="/">Home</a>
+          <a className="navbar-brand" href="/">My Cards (?)</a>
+          <a className="navbar-brand" href="/">Create new</a>
+        </div>
+        
         <button
           className="navbar-toggler"
           type="button"
@@ -27,18 +33,19 @@ function Navbar() {
               <a className="nav-link" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">Toka linkki</a>
+              <a className="nav-link" href="/about">Profile</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">jne</a>
+              <a className="nav-link" href="/about">Cards</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href='/' onClick={handleLogout}>Log Out</a>
             </li>
           </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
+  </div>
   );
 }
 
