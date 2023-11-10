@@ -53,4 +53,3 @@ const CardDemo = ({ item }) => {
 };
 
 export default CardDemo;
-

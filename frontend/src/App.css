@@ -3,6 +3,7 @@ body {
     background-color: #F5F5F5;
   }
   .container{
+    max-width: 90%;
     min-width: 300px;
     background-color: rgb(255, 255, 255) !important;
     margin: 0px;
