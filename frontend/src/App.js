@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import LoginPage from './components/LoginPage'
 import Register from './components/Register'
 import CardDemo from './components/cards/CardDemo';
-import io from 'socket.io-client';
 import { useFetchCards } from './hooks/useFetchCards.js';
 
 const HOST = "localhost"; // todo hae tämä .env tiedostosta
