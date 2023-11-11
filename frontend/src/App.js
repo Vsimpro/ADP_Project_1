@@ -5,9 +5,11 @@ import Navbar from './components/Navbar';
 import LoginPage from './components/LoginPage'
 import Register from './components/Register'
 import CardDemo from './components/cards/CardDemo';
+import io from 'socket.io-client';
+import { useFetchCards } from './hooks/useFetchCards.js';
 
-const HOST = "localhost";
-const PORT = "8123";
+const HOST = "localhost"; // todo hae tämä .env tiedostosta
+const PORT = "8123"; // todo hae tämä .env tiedostosta
 
 
 
@@ -15,46 +17,32 @@ function App() {
   const [currentForm, setCurrentForm] = useState('login');
   const [isLoggedIn, setisLoggedIn] = useState(false)
   const [listData, setListData] = useState([]);
+  const userId = localStorage.getItem('id') // tulisiko tämä muuttaa tarkastamaan onko jwt token olemassa / validi?
 
   const toggleForm = (formName) => {
     setCurrentForm(formName);
   }
 
   useEffect(() => {
-    const id = localStorage.getItem('id')
-    if (id) {
+    if (userId) {
       setisLoggedIn(true)
-      // tämä hakee datan tietokannasta
-      // tämän saa poistaa/muokata/ tehdä mitä vaan
-      // eetun aivopieruilua
-      fetch(`http://${HOST}:${PORT}/card/get-all-cards/${JSON.parse(id)}`)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json(); // Käsittelee vastauksen JSON-muodossa
-        })
-        .then((data) => {
-          console.log(data);
-          setListData(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        // tähän lopppuu aivopieruilut
     }
-  }, [])
+  }, [userId])
+
+  // hakee tietokannasta kortit ja asettaa ne listDataan
+  // suorittaa vain kun isLoggedIn muuttuu trueksi
+  useFetchCards(isLoggedIn, userId, setListData, HOST, PORT);
 
   return (
     <div className="App">
       {
         isLoggedIn ? <div className="container">
           <Navbar />
-    
-          <div id="cards-container">
+
+          <div userId="cards-container">
             {listData.map((item, index) => (
               <CardDemo key={index} item={item} />
-             
+
             ))}
           </div>
 
@@ -66,36 +54,3 @@ function App() {
 };
 
 export default App;
-// [
-//   {
-//     category: "Shopping List",
-//     title: "Breakfast Items",
-//     listItems: ["🥚 Eggs", "🥓 Bacon", "🍞 Toast"],
-//   },
-//   {
-//     category: "Recipes",
-//     title: "Guacamole",
-//     description: "Fresh and creamy avocado dip with tomatoes and spices.",
-//     listItems: [
-//       "3 ripe avocados",
-//       "1 medium tomato, diced",
-//       "1/2 cup red onion, finely chopped",
-//       "2 cloves garlic, minced",
-//       "1 lime, juiced",
-//     ],
-//   },
-//   {
-//     category: "Recipes",
-//     title: "Caesar Salad",
-//     description: "A classic Caesar salad with crisp romaine lettuce, croutons, and creamy dressing.",
-//     listItems: [
-//       "1 head romaine lettuce",
-//       "1 cup croutons",
-//       "1/4 cup grated Parmesan cheese",
-//       "1/4 cup Caesar dressing",
-//       "1 clove garlic, minced",
-//       "1 lemon, juiced",
-//       "Salt and black pepper to taste",
-//     ],
-//   },
-// ];
