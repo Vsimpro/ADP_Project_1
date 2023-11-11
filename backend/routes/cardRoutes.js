@@ -46,7 +46,8 @@ cardRouter.get("/get-all-cards/:id", (request, response) => {
 			if (cards.length === 0) {
 				throw new Error("No cards found!");
 			}
-			console.log("[*] Cards found!", cards);
+			console.log("[*] Cards found!");
+			console.log(cards.forEach((card) => console.log(card._id)));
 			response.status(200).send(cards);
 		})
 		.catch((error) => {
