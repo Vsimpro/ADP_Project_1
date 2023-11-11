@@ -37,8 +37,8 @@ const CardDemo = ({ item }) => {
           <div>
             
             <ul className="list-group list-group-flush">
-            {item.listItems.map((list, index) => (
-              <li key={index} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{list}</li>
+            {item.listItems.map((item, index) => (
+              <li key={index} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item}</li>
             ))}
           </ul>
           
