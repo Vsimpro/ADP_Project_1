@@ -28,8 +28,8 @@ const CardDemo = ({ item }) => {
 
   const updateLocalData = async () => {
     try {
-      const response = await axios.get(`http://localhost:8123/card/get-card/${item._id}`);
-      const updatedData = response.data;
+      //const response = await axios.get(`http://localhost:8123/card/get-card/${item._id}`);
+      //const updatedData = response.data;
 
       // Päivitä tila lokaalisti päivitetyillä tiedoilla
       //setCardItem(updatedData);
