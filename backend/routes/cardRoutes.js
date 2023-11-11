@@ -1,5 +1,6 @@
 import express from 'express';
 import cardModel from '../models/CardModel.js';
+import { io } from '../index.js';
 
 const cardRouter = express.Router();
 
@@ -66,6 +67,9 @@ cardRouter.patch("/update-card/:id", (request, response) => {
 	cardModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
 		.then((card) => {
 			console.log("[*] Card updated!", card);
+
+			io.emit('cardUpdated', card);
+
 			response.status(200).send(card);
 		})
 		.catch((error) => {
