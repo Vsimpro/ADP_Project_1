@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { socket } from '../../controller/socket';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
 
 const CardDemo = ({ item }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
- // const [cardItem, setCardItem] = useState(item); // item on propsina saatu objekti, joka sisältää kortin tiedot
+
+  const cardRef = useRef();
 
   const toggleCard = () => {
     if (isClicked) {
@@ -26,73 +26,39 @@ const CardDemo = ({ item }) => {
     setIsClicked(false);
   }
 
-  const updateLocalData = async () => {
-    try {
-      //const response = await axios.get(`http://localhost:8123/card/get-card/${item._id}`);
-      //const updatedData = response.data;
-
-      // Päivitä tila lokaalisti päivitetyillä tiedoilla
-      //setCardItem(updatedData);
-    } catch (error) {
-      console.error('Virhe päivitettäessä tietoja:', error);
-    }
-  };
-
-  useEffect(() => {
-    // käsittele päivitykset Socket.IO:n kautta
-    socket.on('cardUpdated', (updatedCard) => {
-      //setCardItem(updatedCard);
-    });
-
-    return () => {
-      // vapauta resurssit
-      socket.off('cardUpdated');
-    };
-  }, []);
-
   const saveChanges = async () => {
-
+    const cardElement = cardRef.current;
     // objekti joka sisältää päivitettävät tiedot
     const updatedData = {
-      title: document.querySelector('.card-title').innerText,
-      description: document.querySelector('.card-description').innerText,
-      listItems: Array.from(document.querySelectorAll('.list-group-item')).map(item => item.innerText),
+      title: cardElement.querySelector('.card-title').innerText,
+      description: cardElement.querySelector('.card-description').innerText,
+      listItems: Array.from(cardElement.querySelectorAll('.list-group-item')).map(item => item.innerText),
     };
 
     console.log(updatedData); // logita päivitettävät tiedot
-    
+
     try {
       await axios.patch(`http://localhost:8123/card/update-card/${item._id}`, updatedData);
-
-      // lähetä päivitys Socket.IO:n kautta
-      socket.emit('updateCard', item._id);
-
       setIsEditMode(false);
-
-      // hae päivitetyt tiedot tietokannasta
-      updateLocalData();
+      //TODO: päivitä myös lokaalisti muutokset
     } catch (error) {
       console.error('Virhe tallennettaessa muutoksia:', error);
     }
   };
 
-
   return (
-    <div className={`card ${isClicked ? 'card-active' : ''}`}>
+    <div className={`card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
       <div className="card-header color" onClick={toggleCard}>{item.category} (klikkaa tästä auki)</div>
       <div className="card-body">
-      <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
-      <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
-
+        <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
+        <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
         {isClicked && (
           <div>
-            
             <ul className="list-group list-group-flush">
-            {item.listItems.map((item, index) => (
-              <li key={index} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item}</li>
-            ))}
-          </ul>
-          
+              {item.listItems.map((item, index) => (
+                <li key={index} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item}</li>
+              ))}
+            </ul>
             <div className='buttons-container'>
               {isEditMode ? (
                 <button className='btn btn-success demobtn' onClick={saveChanges}>Save</button>
