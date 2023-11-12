@@ -11,9 +11,9 @@ const HOST = "localhost"; // todo hae tämä .env tiedostosta
 const PORT = "8123"; // todo hae tämä .env tiedostosta
 
 function App() {
-  const [currentForm, setCurrentForm] = useState('login');
-  const [isLoggedIn, setisLoggedIn] = useState(false)
   const userId = localStorage.getItem('id') // tulisiko tämä muuttaa tarkastamaan onko jwt token olemassa / validi?
+  const [currentForm, setCurrentForm] = useState('login');
+  const [isLoggedIn, setisLoggedIn] = useState(Boolean(userId));
 
   // määrittele näytettävä login elementti
   // jos käyttäjä on kirjautunut sisään, ohjaa etusivulle
