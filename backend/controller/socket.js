@@ -8,7 +8,10 @@ export const handleSocketConnections = (io) => {
     });
 
     socket.on("project:update", (projectID) => {
-      socket.to(projectID).emit("project:updated");
+      socket.broadcast.emit("project:updated");
+      //TODO: tällähetkellä lähettää kaikille clienteille viestin
+      // muokkaa tämä käyttämään projectID:n mukaisia roomeja kun projektisivu on valmis
+      //socket.to(projectID).emit("project:updated");
       console.log("[*] Socket.io: Project: " + projectID + " updated");
     });
 

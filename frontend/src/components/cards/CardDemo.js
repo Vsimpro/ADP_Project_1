@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
+import socket from '../../controller/socket';
 
 
 const CardDemo = ({ item }) => {
@@ -40,7 +41,9 @@ const CardDemo = ({ item }) => {
     try {
       await axios.patch(`http://localhost:8123/card/update-card/${item._id}`, updatedData);
       setIsEditMode(false);
-      //TODO: päivitä myös lokaalisti muutokset
+      // emittaa tieto että projekti on päivitetty
+      //TODO: tämä saattaa muuttua kun projektisivu tulee käyttöön
+      socket.emit("project:update");
     } catch (error) {
       console.error('Virhe tallennettaessa muutoksia:', error);
     }

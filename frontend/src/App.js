@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import LoginPage from './components/LoginPage'
 import Register from './components/Register'
 import CardList from './components/cards/CardList';
+import socket from './controller/socket.js';
 
 const HOST = "localhost"; // todo hae tämä .env tiedostosta
 const PORT = "8123"; // todo hae tämä .env tiedostosta
@@ -14,6 +15,27 @@ function App() {
   const userId = localStorage.getItem('id') // tulisiko tämä muuttaa tarkastamaan onko jwt token olemassa / validi?
   const [currentForm, setCurrentForm] = useState('login');
   const [isLoggedIn, setisLoggedIn] = useState(Boolean(userId));
+
+//TODO: kaikki projektit johon käyttäjä kuuluu 
+// => joinaa projectId:llä socket.io roomiin
+// kuuntele niissä huoneissa "project:updated" eventtiä
+// => käske hakemaan databasesta päivitetty tieto
+// ??? millä tasolla uusi tieto haetaan Projekti => Kortti => Taski???
+useEffect(() => {
+  socket.on("connect", () => {
+    console.log("Socket id: " + socket.id + " Connected: " + socket.connected);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("Socket disconnected");
+  });
+
+  // Clean up the effect
+  return () => {
+    socket.off("connect");
+    socket.off("disconnect");
+  }
+}, []);
 
   // määrittele näytettävä login elementti
   // jos käyttäjä on kirjautunut sisään, ohjaa etusivulle
