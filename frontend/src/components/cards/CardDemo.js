@@ -76,10 +76,28 @@ const CardDemo = ({ item }) => {
     }
   };
 
-
   return (
     <div className={`card ${isClicked ? 'card-active' : ''}`}>
-      <div className="card-header color" onClick={toggleCard}>{item.category} (klikkaa tästä auki)</div>
+    <div className="card-header color" onClick={toggleCard}>
+      <div
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        className="header-container"
+      >
+        <span className='header-text'>{item.category}</span>
+        {isEditMode || !isClicked ? null : (
+              <button
+              className='editCardButton'
+              onClick={(event) => {
+                event.stopPropagation(); // Prevent event from reaching the parent (card-header)
+                openEditMode();
+              }}
+            >
+              📝
+            </button>
+        )}
+      </div>
+    </div>
+  {/*   <div className="card-body" onClick={toggleCard}> */}
       <div className="card-body">
       <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
       <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
@@ -105,6 +123,7 @@ const CardDemo = ({ item }) => {
         )}
       </div>
     </div>
+    /* </div> */
   );
 };
 

@@ -6,7 +6,7 @@
 }
 
 .card {
-  width: 600px;
+  max-width: 500px;
   margin: 20px 0;
   color: #000000;
   text-align: left;
@@ -71,12 +71,17 @@
   }
 
 .card-header.color{
-  background-color: rgb(204, 159, 255);
+  background-color: rgb(169, 159, 255);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 .card-header.color:hover{
-  background-color: rgb(255, 236, 202);
+  background-color: rgb(154, 143, 255);;
+}
+
+.header-text{
+  font-size: 16px;
+
 }
 .editablecontent {
   transition: all 0.3s ease; /* Adjust the duration and easing function as needed */
@@ -116,3 +121,25 @@
 .card-header {
   grid-column: span 2; 
 }
+
+.editCardButton{
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bolder;
+    height: 30px;
+    width: 30px;
+    padding: 5px; 
+    border-radius: 100%; 
+    background-color: rgba(255, 236, 202, 0);
+    color: #000000; 
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.5s ease; 
+  }
+  
+  .editCardButton:hover {
+    background-color: rgba(255, 255, 255, 0.753);
+  }
+  
+
+
