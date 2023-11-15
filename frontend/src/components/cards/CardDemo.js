@@ -59,7 +59,7 @@ const CardDemo = ({ item }) => {
       <span className='header-text'>{item.category}</span>
         {isEditMode || !isClicked ? null : (
               <button
-              className='editCardButton'
+              className='btn editCardButton'
               onClick={(event) => {
                 event.stopPropagation(); 
                 openEditMode();

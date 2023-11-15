@@ -12,8 +12,8 @@ function Navbar() {
       <div className="container-fluid">
         <div className="d-flex">
           <a className="navbar-brand" href="/">Home</a>
-          <a className="navbar-brand" href="/">My Cards (?)</a>
-          <a className="navbar-brand" href="/">Create new</a>
+          <a className="navbar-brand" href="/">Cards</a>
+          <a className="navbar-brand" href="/Create">Create new</a>
         </div>
         
         <button
@@ -33,10 +33,10 @@ function Navbar() {
               <a className="nav-link" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">Profile</a>
+              <a className="nav-link" href="/">Profile</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">Cards</a>
+              <a className="nav-link" href="/">Cards</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href='/' onClick={handleLogout}>Log Out</a>

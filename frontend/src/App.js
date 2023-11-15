@@ -7,6 +7,7 @@ import LoginPage from './components/LoginPage'
 import Register from './components/Register'
 import CardList from './components/cards/CardList';
 import socket from './controller/socket.js';
+import Create from './components/Create.jsx';
 
 const HOST = "localhost"; // todo hae tämä .env tiedostosta
 const PORT = "8123"; // todo hae tämä .env tiedostosta
@@ -66,6 +67,7 @@ useEffect(() => {
         <Routes>
           <Route path="/login" element={loginElement} />
           <Route path="/" element={isLoggedIn ? <CardList userId={userId} HOST={HOST} PORT={PORT} /> : <Navigate to="/login" />} />
+          <Route path="/create" element={<Create />} />
         </Routes>
       </div>
     </Router>

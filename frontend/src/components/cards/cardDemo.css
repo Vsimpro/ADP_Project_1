@@ -2,10 +2,10 @@ body{
   background-color: #F5F5F5 !important;
 }
 #cards-container {
+  max-width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: rgb(108, 252, 204);
 }
 
 .card {
@@ -52,113 +52,144 @@ body{
     cursor: pointer;
   }
   
-.list-group-item:hover {
-    background-color: #F5F5F5;
-  }
-  
-.crossed-out {
-    text-decoration: line-through;
-    color: rgb(143, 143, 143);
-  }
-
-
-.buttons-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-  }
-
-  .demobtn{
-    width: 120px;
-    margin: 10px;
-    border: 0px;
-    transition: background-color 0.3s;
-  }
-
-  .demobtn.save{
-    background-color: rgb(169, 159, 255);
-  }
-
-  .demobtn:hover{
-    background-color: rgb(138, 125, 255);
-    color: black;
+  .list-group-item:hover {
+      background-color: #F5F5F5;
+    }
     
+  .crossed-out {
+      text-decoration: line-through;
+      color: rgb(143, 143, 143);
+    }
+
+
+  .buttons-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .demobtn{
+      width: 120px;
+      margin: 10px;
+      border: 0px;
+      transition: background-color 0.3s;
+    }
+
+    .demobtn.save{
+      background-color: rgb(169, 159, 255);
+    }
+
+    .demobtn:hover{
+      background-color: rgb(138, 125, 255);
+      color: black;
+      
+    }
+
+  .card-header.color{
+    background-color: rgb(169, 159, 255);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  .card-header.color:hover{
+    background-color: rgb(138, 125, 255);
   }
 
- 
+  .header-text{
+    font-size: 16px;
 
+  }
+  .editablecontent {
+    transition: all 0.3s ease;
+  }
 
-.card-header.color{
-  background-color: rgb(169, 159, 255);
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-.card-header.color:hover{
-  background-color: rgb(138, 125, 255);
-}
+  .editablecontent.active-field {
+    background-color: rgb(243, 243, 243)
+  }
 
-.header-text{
-  font-size: 16px;
+  .EditTools-container {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;  
+    align-items: left;     
+    margin: 10px 10px 10px -5px;
+    border-radius: 5px;
+  }
 
-}
-.editablecontent {
-  transition: all 0.3s ease; /* Adjust the duration and easing function as needed */
-}
+  .EditTools-container .btn {
+    background-color: rgb(199, 199, 199);
+    font-size: 12px;
+    color: #000000;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  .EditTools-container .btn:hover {
+    background-color: #adadad;
+  }
 
-.editablecontent.active-field {
-  background-color: rgb(243, 243, 243)
-}
+  .edit-mode {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-gap: 0px; 
+  }
+  .card-header {
+    grid-column: span 2; 
+  }
 
-.EditTools-container {
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;  
-  align-items: left;     
-  margin: 10px 10px 10px -5px;
-  border-radius: 5px;
-}
-
-.EditTools-container .btn {
-  background-color: rgb(199, 199, 199);
-  font-size: 12px;
-  color: #000000;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  margin: 5px;
-}
-.EditTools-container .btn:hover {
-  background-color: #adadad;
-}
-
-.edit-mode {
-  display: grid;
-  grid-template-columns: 75% 25%;
-  grid-gap: 0px; 
-}
-.card-header {
-  grid-column: span 2; 
-}
-
-.editCardButton{
+  .editCardButton {
     background-image: url('../../../public/icons/edit-icon-03.png');
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center; 
     height: 30px;
     width: 30px;
-    padding: 5px; 
-    border-radius: 100%; 
-    background-color: rgba(255, 236, 202, 0);
-    color: #ffffff; 
+    border-radius: 100%;
     text-align: center;
     cursor: pointer;
-    transition: border 0.5s ease; 
+    transition: opacity 0.3s ease;
   }
   
   .editCardButton:hover {
-    border: 1px solid #F5F5F5;
+    opacity: 0.6;
   }
+
+  .formGroup{
+      text-align: left;
+      width: 600px;
+      margin-top: 60px;
+      padding: 40px;
+      color: black;
+      border: 1px solid #b4b4b4;
+      border-radius: 10px; 
+      background-color: #ffffff;
+
+   
+    }
+    .formGroup form{
+      margin-bottom: 40px;
+
+    }
+
+    .formGroup label{
+      margin-top: 20px;
+      padding: 0;
+    }
   
+    .colorButton{
+      min-width: 40px;
+      min-height: 20px;
+      border-color: black;
+      border-radius: 3px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .btn-secondary{
+      width: 240px;
+    }
+  
+    
 
 
