@@ -1,13 +1,16 @@
+body{
+  background-color: #F5F5F5 !important;
+}
 #cards-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(108, 252, 204);
 }
 
 .card {
   max-width: 500px;
-  margin: 20px 0;
+  margin: 40px 0px;
   color: #000000;
   text-align: left;
   max-height: 200px;
@@ -62,13 +65,29 @@
 .buttons-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin: 20px;
+    gap: 20px;
+    margin-top: 20px;
   }
 
-.demobtn{
+  .demobtn{
     width: 120px;
+    margin: 10px;
+    border: 0px;
+    transition: background-color 0.3s;
   }
+
+  .demobtn.save{
+    background-color: rgb(169, 159, 255);
+  }
+
+  .demobtn:hover{
+    background-color: rgb(138, 125, 255);
+    color: black;
+    
+  }
+
+ 
+
 
 .card-header.color{
   background-color: rgb(169, 159, 255);
@@ -76,7 +95,7 @@
   transition: all 0.3s ease-in-out;
 }
 .card-header.color:hover{
-  background-color: rgb(154, 143, 255);;
+  background-color: rgb(138, 125, 255);
 }
 
 .header-text{
@@ -123,22 +142,22 @@
 }
 
 .editCardButton{
-    display: inline-block;
-    font-size: 16px;
-    font-weight: bolder;
+    background-image: url('../../../public/icons/edit-icon-03.png');
+    background-size: contain;
+    background-repeat: no-repeat;
     height: 30px;
     width: 30px;
     padding: 5px; 
     border-radius: 100%; 
     background-color: rgba(255, 236, 202, 0);
-    color: #000000; 
+    color: #ffffff; 
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.5s ease; 
+    transition: border 0.5s ease; 
   }
   
   .editCardButton:hover {
-    background-color: rgba(255, 255, 255, 0.753);
+    border: 1px solid #F5F5F5;
   }
   
 

@@ -51,51 +51,48 @@ const CardDemo = ({ item }) => {
 
   return (
     <div className={`card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
-      <div className="card-header color" onClick={toggleCard}>{item.category} (klikkaa tästä auki)</div>
-    <div className={`card ${isClicked ? 'card-active' : ''}`}>
-    <div className="card-header color" onClick={toggleCard}>
+      <div className="card-header color" onClick={toggleCard}> 
       <div
         style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
         className="header-container"
       >
-        <span className='header-text'>{item.category}</span>
+      <span className='header-text'>{item.category}</span>
         {isEditMode || !isClicked ? null : (
               <button
               className='editCardButton'
               onClick={(event) => {
-                event.stopPropagation(); // Prevent event from reaching the parent (card-header)
+                event.stopPropagation(); 
                 openEditMode();
               }}
             >
-              📝
             </button>
-        )}
-      </div>
-    </div>
-  {/*   <div className="card-body" onClick={toggleCard}> */}
-      <div className="card-body">
-        <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
-        <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
-        {isClicked && (
+        )}</div>
+        </div>
+        <div className="card-body">
+  <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
+  <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
+  
+  {isClicked && (
+    <div>
+      <ul className="list-group list-group-flush">
+        {item.listItems.map((item, index) => (
+          <li key={index} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item}</li>
+        ))}
+      </ul>
+      
+      <div className='buttons-container'>
+        {isEditMode ? (
           <div>
-            <ul className="list-group list-group-flush">
-              {item.listItems.map((item, index) => (
-                <li key={index} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item}</li>
-              ))}
-            </ul>
-            <div className='buttons-container'>
-              {isEditMode ? (
-                <button className='btn btn-success demobtn' onClick={saveChanges}>Save</button>
-              ) : (
-                <button className='btn btn-success demobtn' onClick={openEditMode}>Edit</button>
-              )}
-              <button className='btn btn-outline-dark demobtn' onClick={closeEditMode}>Close</button>
-            </div>
+            <button className='btn demobtn save' onClick={saveChanges}>Save</button>
+            <button className='btn btn-outline-dark demobtn' onClick={closeEditMode}>Close</button>
           </div>
-        )}
+        ) : null}
       </div>
     </div>
-    /* </div> */
+  )}
+</div>
+
+    </div>
   );
 };
 
