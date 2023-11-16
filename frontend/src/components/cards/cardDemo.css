@@ -1,5 +1,5 @@
 body{
-  background-color: #F5F5F5 !important;
+  background-color: white !important;
 }
 #cards-container {
   max-width: 80%;
@@ -157,32 +157,32 @@ body{
 
   .formGroup{
       text-align: left;
-      width: 600px;
+      width: 500px;
       margin-top: 60px;
       padding: 40px;
       color: black;
       border: 1px solid #b4b4b4;
       border-radius: 10px; 
       background-color: #ffffff;
-
-   
     }
-    .formGroup form{
-      margin-bottom: 40px;
+      .formGroup form{
+        margin-bottom: 40px;
 
+      }
+
+      .formGroup label{
+        padding: 0;
+      }
+
+    .colorPicker{
+      width: 200px;
     }
 
-    .formGroup label{
-      margin-top: 20px;
-      padding: 0;
-    }
-  
     .colorButton{
       min-width: 40px;
-      min-height: 20px;
+      height: 20px;
       border-color: black;
       border-radius: 3px;
-      margin: 5px;
       cursor: pointer;
     }
 
@@ -190,6 +190,19 @@ body{
       width: 240px;
     }
   
-    
+    .floating-component {
+      position: fixed; /* or use 'absolute' depending on your requirements */
+      top: 50%;
+      left: 80%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000; /* Adjust the z-index to make sure it appears above other content */
+    }
+      .floating-component button{
+        margin: 5px;
+      }
 
 

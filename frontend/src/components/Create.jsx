@@ -8,14 +8,14 @@ const Create = () => {
       <div className='formGroup'>
       <h1>Create a new card</h1>
         <form>
+        
+            <ColorPicker />
+        
+        
           <div className="form-group">
             <label>Title</label>
             <input type="text" className="form-control" id="" placeholder="Add title..." />
 
-            <label>Category / Color</label>
-
-            <ColorPicker />
-            
             <label>Description</label>
             <textarea className="form-control" id="" rows="3" placeholder='Add description...'></textarea>
 
