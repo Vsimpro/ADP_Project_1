@@ -157,7 +157,6 @@ body{
 
   .formGroup{
       text-align: left;
-      width: 500px;
       margin-top: 60px;
       padding: 40px;
       color: black;
@@ -174,16 +173,26 @@ body{
         padding: 0;
       }
 
-    .colorPicker{
-      width: 200px;
+    .editToolsContainer{
+      max-width: 150px;
+      color: #000000;
+      background-color: white;
+      border: 1px solid #ccc;
+      font-size: 12px;
+      font-weight: bolder;
+      padding: 10px;
+      text-align: left;
     }
-
+    .editToolsContainer p{
+      margin: 0px;
+    }
     .colorButton{
       min-width: 40px;
       height: 20px;
       border-color: black;
       border-radius: 3px;
       cursor: pointer;
+      margin: 2px;
     }
 
     .btn-secondary{
@@ -191,18 +200,23 @@ body{
     }
   
     .floating-component {
-      position: fixed; /* or use 'absolute' depending on your requirements */
-      top: 50%;
-      left: 80%;
-      transform: translate(-50%, -50%);
+      color: #000000;
+      text-align: left;
       background-color: #fff;
       padding: 20px;
       border: 1px solid #ccc;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      z-index: 1000; /* Adjust the z-index to make sure it appears above other content */
     }
       .floating-component button{
         margin: 5px;
+      
       }
+
+    .btn-editTools{
+      margin-top: 10px;
+      width: 100%;
+      background-color: #6c757d;
+      font-size: 12px;
+      color: #ffffff;
+    }
 
 
