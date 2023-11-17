@@ -3,21 +3,20 @@ import CreateCard from './CreateCard';
 import EditTools from './EditTools';
 
 const FloatingElements = () => {
-  return (
-    <div>
-      <div className="row">
-        <div className="col-9">
-          <p>Column 1</p>
-          <CreateCard />
-        </div>
-        <div className="col-3">
-          
-          <p>Column 2</p>
+    return (
+        <div>
+          <div className="row">
+          <div className="col-md-3 col-12 order-md-2">
+
           <EditTools />
         </div>
-      </div>
-    </div>
-  );
-};
+        <div className="col-md-9 col-12 order-md-1">
+
+              <CreateCard />
+            </div>
+          </div>
+        </div>
+      );
+    };
 
 export default FloatingElements;
