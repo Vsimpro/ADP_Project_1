@@ -39,7 +39,7 @@ label{
     border-color: rgb(169, 159, 255);
   }
 
-  .btn-profile.save{
+  .btn-profile.save:hover{
     color: #fff;
     background-color: rgb(138, 125, 255);
     border-color: rgb(138, 125, 255);
@@ -59,6 +59,10 @@ label{
     height: 30px;
     margin: 5px;
     border-radius: 50px;
-
+    transition: opacity 0.3s ease;
+  }
+  .colors:hover{
+    opacity: 60%;
+   
   }
   
