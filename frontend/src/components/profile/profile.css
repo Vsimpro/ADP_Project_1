@@ -14,12 +14,18 @@ label{
 }
 
 .profilePicPlaceholder{
-    background-color: rgb(106, 143, 223);
-    height: 70px;
-    width: 70px;
-    border-radius: 100px;
-    border: 1px solid black;
-    margin-bottom: 15px;
+    
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 32px;
+  color: #fff;
+  background-color: #333;
 }
 
 .custom-container {
@@ -46,5 +52,13 @@ label{
   }
   input{
     margin-top: 0;
+  }
+
+  .colors{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 50px;
+
   }
   
