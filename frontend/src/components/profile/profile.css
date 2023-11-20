@@ -1,0 +1,50 @@
+.container.profilePage{
+    max-width: 500px;
+    text-align: left;
+}
+
+h1, h2, h3, p{
+    color: black;
+}
+
+label{
+    color: black;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.profilePicPlaceholder{
+    background-color: rgb(106, 143, 223);
+    height: 70px;
+    width: 70px;
+    border-radius: 100px;
+    border: 1px solid black;
+    margin-bottom: 15px;
+}
+
+.custom-container {
+        padding:0;
+    }
+    
+  .btn-profile.save{
+    width: 240px;
+    color: #fff;
+    background-color: rgb(169, 159, 255);
+    border-color: rgb(169, 159, 255);
+  }
+
+  .btn-profile.save{
+    color: #fff;
+    background-color: rgb(138, 125, 255);
+    border-color: rgb(138, 125, 255);
+  }
+  
+  .btn-profile.change{
+    background-color: #fff;
+    border: 2px solid black;
+    color: black;
+  }
+  input{
+    margin-top: 0;
+  }
+  

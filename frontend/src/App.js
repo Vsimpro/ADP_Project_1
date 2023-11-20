@@ -8,6 +8,7 @@ import Register from './components/Register'
 import CardList from './components/cards/CardList';
 import socket from './controller/socket.js';
 import Create from './components/Create.jsx';
+import Profile from './components/profile/Profile.jsx';
 
 const HOST = "localhost"; // todo hae tämä .env tiedostosta
 const PORT = "8123"; // todo hae tämä .env tiedostosta
@@ -68,6 +69,7 @@ useEffect(() => {
           <Route path="/login" element={loginElement} />
           <Route path="/" element={isLoggedIn ? <CardList userId={userId} HOST={HOST} PORT={PORT} /> : <Navigate to="/login" />} />
           <Route path="/create" element={<Create />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </Router>
