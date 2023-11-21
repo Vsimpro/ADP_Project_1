@@ -1,5 +1,5 @@
 import React from 'react';
-import FloatingElements from './FoatingElements';
+import FloatingElements from './FloatingElements';
 
 
 const Create = () => {

@@ -1,0 +1,62 @@
+.floatingElements{
+  background-color: rgb(255, 255, 255);
+  padding: 60px 20px;
+  text-align: left;
+ 
+}
+.createCard.card {
+    color: #000000;
+    max-width: 600px;
+    text-align: left;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .card-header.custom-header{
+    background-color: #ececec;
+    height: 30px;
+    
+  }
+  
+  .btn-createCard {
+    width: 240px;
+    color: #fff;
+    background-color: rgb(169, 159, 255);
+    border-color: rgb(169, 159, 255);
+    margin: 20px;
+  }
+
+  .btn-creteCard.save:hover{
+    color: #fff;
+    background-color: rgb(138, 125, 255);
+    border-color: rgb(138, 125, 255);
+  }
+
+  hr{
+    background-color: #fff;
+    margin: 24px;
+  }
+
+  .editToolsContainer{
+    color: #000000;
+    background-color: #fff;
+    text-align: left;
+    margin-bottom: 20px;
+ 
+  }
+
+  .editToolsContainer .btn{
+    width: 120px;
+    margin: 5px;
+
+  }
+  .colorButton{
+    height: 30px;
+    cursor: pointer;
+
+  }
+
+  .custom-column {
+    margin: 0;
+  }
+  

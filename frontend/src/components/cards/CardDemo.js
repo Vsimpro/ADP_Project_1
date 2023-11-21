@@ -50,7 +50,7 @@ const CardDemo = ({ item }) => {
   };
 
   return (
-    <div className={`card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
+    <div className={`card custom-card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
       <div className="card-header color" onClick={toggleCard}> 
       <div
         style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
