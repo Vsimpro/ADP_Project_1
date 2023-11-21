@@ -44,7 +44,7 @@ const Profile = () => {
             <button className='btn btn-profile save' onClick={handleSaveProfile}>
               Save
             </button>
-            <hr className="my-4" />
+
           </div>
         </form>
       </div>

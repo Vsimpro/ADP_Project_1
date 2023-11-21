@@ -7,8 +7,8 @@ import LoginPage from './components/LoginPage'
 import Register from './components/Register'
 import CardList from './components/cards/CardList';
 import socket from './controller/socket.js';
-import Create from './components/Create.jsx';
 import Profile from './components/profile/Profile.jsx';
+import Create from './components/createTools/Create.jsx';
 
 const HOST = "localhost"; // todo hae tämä .env tiedostosta
 const PORT = "8123"; // todo hae tämä .env tiedostosta

@@ -1,6 +1,5 @@
 import React from 'react';
-/* import ColorPicker from './cards/ColorPicker'; */
-import FloatingElements from './cards/FoatingElements';
+import FloatingElements from './FoatingElements';
 
 
 const Create = () => {
