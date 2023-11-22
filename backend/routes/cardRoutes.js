@@ -9,6 +9,30 @@ cardRouter.post("/create-card", (request, response) => {
 	console.log("[>] POST '/create-card'");
 	console.log("Card data", request.body);
 
+	var id;
+	let sendError = false; // If token can't be verified, or a problem arises.
+
+	try {
+        let token 	= request.cookies["Bearer"]
+		let valid 	= validateJWT( token );
+
+		if (!valid) {
+			sendError = true;
+		}
+
+		id = _id;
+
+    } catch (error) {
+        console.log( error )
+		sendError = true;
+    }   
+
+	if (sendError) {
+		console.log("[!] Could not validate token")
+        response.status(401).send("Invalid token.");
+        return;
+	}
+
 	var newCard = new cardModel(request.body);
 	newCard.save()
 		.then((card) => {
@@ -64,6 +88,30 @@ cardRouter.patch("/update-card/:id", (request, response) => {
 	console.log("Card ID", request.params.id);
 	console.log("Card data", request.body);
 
+	var id;
+	let sendError = false; // If token can't be verified, or a problem arises.
+
+	try {
+        let token 	= request.cookies["Bearer"]
+		let valid 	= validateJWT( token );
+
+		if (!valid) {
+			sendError = true;
+		}
+
+		id = _id;
+
+    } catch (error) {
+        console.log( error )
+		sendError = true;
+    }   
+
+	if (sendError) {
+		console.log("[!] Could not validate token")
+        response.status(401).send("Invalid token.");
+        return;
+	}
+
 	cardModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
 		.then((card) => {
 			console.log("[*] Card updated!", card);
@@ -83,6 +131,30 @@ cardRouter.patch("/update-card/:id", (request, response) => {
 cardRouter.delete("/delete-card/:id", (request, response) => {
 	console.log("[>] DELETE '/delete-card/:id'");
 	console.log("Card ID", request.params.id);
+
+	var id;
+	let sendError = false; // If token can't be verified, or a problem arises.
+
+	try {
+        let token 	= request.cookies["Bearer"]
+		let valid 	= validateJWT( token );
+
+		if (!valid) {
+			sendError = true;
+		}
+
+		id = _id;
+
+    } catch (error) {
+        console.log( error )
+		sendError = true;
+    }   
+
+	if (sendError) {
+		console.log("[!] Could not validate token")
+        response.status(401).send("Invalid token.");
+        return;
+	}
 
 	cardModel.findByIdAndDelete(request.params.id)
 		.then((card) => {
