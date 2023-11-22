@@ -9,6 +9,30 @@ projectRouter.post("/create-project", (request, response) => {
     console.log("[>] POST '/create-project'");
     console.log("Project data", request.body);
 
+    var id;
+	let sendError = false; // If token can't be verified, or a problem arises.
+
+	try {
+        let token 	= request.cookies["Bearer"]
+		let valid 	= validateJWT( token );
+
+		if (!valid) {
+			sendError = true;
+		}
+
+		id = _id;
+
+    } catch (error) {
+        console.log( error )
+		sendError = true;
+    }   
+
+	if (sendError) {
+		console.log("[!] Could not validate token")
+        response.status(401).send("Invalid token.");
+        return;
+	}
+
     var newProject = new projectModel(request.body);
     newProject.save()
         .then((project) => {
@@ -62,6 +86,30 @@ projectRouter.patch("/update-project/:id", (request, response) => {
     console.log("[>] PATCH '/update-project/:id'");
     console.log("Project ID", request.params.id);
     console.log("Project data", request.body);
+
+    var id;
+	let sendError = false; // If token can't be verified, or a problem arises.
+
+	try {
+        let token 	= request.cookies["Bearer"]
+		let valid 	= validateJWT( token );
+
+		if (!valid) {
+			sendError = true;
+		}
+
+		id = _id;
+
+    } catch (error) {
+        console.log( error )
+		sendError = true;
+    }   
+
+	if (sendError) {
+		console.log("[!] Could not validate token")
+        response.status(401).send("Invalid token.");
+        return;
+	}
 
     projectModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
         .then((project) => {
