@@ -63,7 +63,7 @@ userRouter.get("/get-user/:id", (request, response) => {
     console.log("[>] GET '/get-user/:id'");
     console.log("User ID", request.params.id);
     
-    var id = request.params.id
+    var id = request.params.id;
     try {
         let token = request.cookies["Bearer"]
         let valid = validateJWT( token )

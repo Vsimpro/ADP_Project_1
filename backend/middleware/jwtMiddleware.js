@@ -3,6 +3,20 @@ import jwt from "jsonwebtoken";
 //TODO: Switch to process.env
 const SECRET = 'secret'
 
+/* Helper functions */
+// Check if token is 'null', 'undefined' or ''.
+function tokenNotNull( token ) {
+    if ((token == "") || 
+        (token == null) ||
+        (token == undefined) ) {
+            return false;
+    }
+
+    return true;
+}
+
+
+/* Exported functions */
 const generateJWT = (id) => { 
     var token = jwt.sign({
         exp: Math.floor(Date.now() / 1000) + (60 * 60),
@@ -17,6 +31,11 @@ const generateJWT = (id) => {
 
 const validateJWT = (token) => { 
     let verified = false;
+
+    if (!tokenNotNull( token )) {
+        return false; 
+    }
+
     try { 
         verified = jwt.verify(token, SECRET); 
         if (!verified) { 
@@ -31,9 +50,44 @@ const validateJWT = (token) => {
     return true;
 } 
 
+const getOwnerOf = (token) => { 
+    let id = undefined;
+    let token_id = undefined
+    let decoded_token = undefined;
+
+    if (!tokenNotNull( token )) {
+        return false; 
+    }
+
+
+    try {
+        decoded_token = jwt.verify(token, SECRET);
+        token_id = decoded_token["data"]["_id"]
+
+        if (!decoded_token) {
+            console.log("[!] Could not decode token.")
+            return null;
+        }
+
+        id = token_id;
+
+    } catch (error) {
+        console.log( error )
+        return null;
+    }
+
+    return id;
+} 
+
+
 const validateOwnership = (token, id) => {
     let token_id = ""
     let decoded_token = ""
+
+    if (!tokenNotNull( token )) {
+        return false; 
+    }
+
     try {
         decoded_token = jwt.verify(token, SECRET);
         token_id = decoded_token["data"]["_id"]
@@ -50,4 +104,4 @@ const validateOwnership = (token, id) => {
     return true;
 }
 
-export { generateJWT, validateJWT, validateOwnership };
+export { generateJWT, validateJWT, validateOwnership, getOwnerOf };
