@@ -33,7 +33,10 @@ const CardDemo = ({ item }) => {
     const updatedData = {
       title: cardElement.querySelector('.card-title').innerText,
       description: cardElement.querySelector('.card-description').innerText,
-      listItems: Array.from(cardElement.querySelectorAll('.list-group-item')).map(item => item.innerText),
+      listItems: Array.from(cardElement.querySelectorAll('.list-group-item')).map(item => ({
+        task: item.innerText,
+        isDone: false,
+      })),
     };
 
     console.log(updatedData); // logita päivitettävät tiedot
@@ -75,8 +78,8 @@ const CardDemo = ({ item }) => {
   {isClicked && (
     <div>
       <ul className="list-group list-group-flush">
-        {item.listItems.map((item, index) => (
-          <li key={index} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item}</li>
+        {item.listItems.map((item) => (
+          <li key={item._id} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item.task}</li>
         ))}
       </ul>
       

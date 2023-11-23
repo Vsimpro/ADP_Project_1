@@ -1,11 +1,15 @@
 import { Schema, model } from "mongoose";
 
 const cardSchema = new Schema({
-	category: { type: String, required: true },
+	category: { type: String, default: "To-Do" }, // TODO: tarvitaanko vai voiko poistaa
 	title: { type: String, required: true },
 	description: { type: String, required: false },
 	userId: [{ type: String, required: true }],
-	listItems: [{ type: String, required: false }],
+	listItems: [{
+    _id: { type: Schema.Types.ObjectId, auto: true },
+    task: { type: String, required: true },
+    isDone: { type: Boolean, default: true }
+  }],
 }, {
 	timestamps: true, // creates createdAt and updatedAt fields automatically
 });
