@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './CreateCard.css';
 
 // TODO toiminnallisuus listan luomiselle
 // TODO lomakkeen tietojen lähetys tietokantaan
 
 const CreateCard = () => {
+
   return (
     <div className='createCard'>
       <div className='card'>

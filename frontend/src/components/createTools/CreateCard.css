@@ -55,6 +55,10 @@
     cursor: pointer;
 
   }
+  .colorButton:hover{
+   opacity: 60%;
+
+  }
 
   .custom-column {
     margin: 0;
