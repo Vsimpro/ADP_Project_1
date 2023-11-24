@@ -51,7 +51,7 @@ const CreateCard = () => {
   return (
     <div className='createCard'>
       <div className='card'>
-        <div className='card-header custom-header'>
+        <div className='card-header custom-header '>
         </div>
         <div className='card-body'>
           <form>
