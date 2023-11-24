@@ -202,4 +202,9 @@ body{
       color: #ffffff;
     }
 
-
+    @media (max-width: 767px) {
+   
+      .card-row{
+        margin: 40px 0px;
+      }
+    }
