@@ -7,6 +7,7 @@ import EditTools from '../createTools/EditTools';
 const CardDemo = ({ item }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [headerColor, setHeaderColor] = useState('#DefaultColor');
 
   const cardRef = useRef();
 
@@ -58,7 +59,7 @@ return (
 <div className="row card-row">
       <div className="col-md-8">
         <div className={`card custom-card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
-          <div className="card-header color" onClick={toggleCard}>
+          <div className="card-header color" style={{ backgroundColor: headerColor }} onClick={toggleCard}>
             <div
               style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
               className="header-container"
@@ -102,7 +103,7 @@ return (
         </div>
       </div>
       <div className="col-md-4">
-      {isEditMode && <EditTools />} 
+      {isEditMode && <EditTools onColorChange={setHeaderColor} />} 
 
       </div>
     </div>
