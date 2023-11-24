@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import socket from '../../controller/socket';
+import EditTools from '../createTools/EditTools';
 
 
 const CardDemo = ({ item }) => {
@@ -52,51 +53,59 @@ const CardDemo = ({ item }) => {
     }
   };
 
-  return (
-    <div className={`card custom-card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
-      <div className="card-header color" onClick={toggleCard}> 
-      <div
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-        className="header-container"
-      >
-      <span className='header-text'>{item.category}</span>
-        {isEditMode || !isClicked ? null : (
-              <button
-              className='btn editCardButton'
-              onClick={(event) => {
-                event.stopPropagation(); 
-                openEditMode();
-              }}
-            >
-            </button>
-        )}</div>
-        </div>
-        <div className="card-body">
-  <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
-  <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
-  
-  {isClicked && (
-    <div>
-      <ul className="list-group list-group-flush">
-        {item.listItems.map((item) => (
-          <li key={item._id} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item.task}</li>
-        ))}
-      </ul>
-      
-      <div className='buttons-container'>
-        {isEditMode ? (
-          <div>
-            <button className='btn demobtn save' onClick={saveChanges}>Save</button>
-            <button className='btn btn-outline-dark demobtn' onClick={closeEditMode}>Close</button>
-          </div>
-        ) : null}
-      </div>
-    </div>
-  )}
-</div>
 
+return (
+<div className="row card-row">
+      <div className="col-md-8">
+        <div className={`card custom-card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
+          <div className="card-header color" onClick={toggleCard}>
+            <div
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+              className="header-container"
+            >
+              <span className='header-text'>{item.category}</span>
+              {isEditMode || !isClicked ? null : (
+                <button
+                  className='btn editCardButton'
+                  onClick={(event) => {
+                    event.stopPropagation(); 
+                    openEditMode();
+                  }}
+                >
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="card-body">
+            <h5 className={`card-title ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.title}</h5>
+            <p className={`card-description ${isEditMode ? 'editablecontent active-field' : ''}`} contentEditable={isEditMode}>{item.description}</p>
+
+            {isClicked && (
+              <div>
+                <ul className="list-group list-group-flush">
+                  {item.listItems.map((item) => (
+                    <li key={item._id} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item.task}</li>
+                  ))}
+                </ul>
+
+                <div className='buttons-container'>
+                  {isEditMode ? (
+                    <div>
+                      <button className='btn demobtn save' onClick={saveChanges}>Save</button>
+                      <button className='btn btn-outline-dark demobtn' onClick={closeEditMode}>Close</button>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="col-md-4">
+      {isEditMode && <EditTools />} 
+
+      </div>
     </div>
   );
 };
-
 export default CardDemo;
