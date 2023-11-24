@@ -18,7 +18,7 @@ const EditTools = ({ onColorChange }) => {
           <button className='btn colorButton' style={{ backgroundColor: '#FA9797' }} onClick={() => handleColorChange('#FA9797')}></button>
           <button className='btn colorButton' style={{ backgroundColor: '#EFE699' }} onClick={() => handleColorChange('#EFE699')}></button>
           <button className='btn colorButton' style={{ backgroundColor: '#C9EF99' }} onClick={() => handleColorChange('#C9EF99')}></button>
-          <button className='btn colorButton' style={{ backgroundColor: '#BE8CFF' }} onClick={() => handleColorChange('#BE8CFF')}></button>
+          <button className='btn colorButton' style={{ backgroundColor: '#A99FFF' }} onClick={() => handleColorChange('#A99FFF')}></button>
         </div>
       </div>
       <div className='row'>

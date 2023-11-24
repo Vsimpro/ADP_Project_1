@@ -52,7 +52,6 @@ const CreateCard = ({ headerColor }) => {
     <div className='createCard'>
       <div className='card'>
         <div className='card-header custom-header' style={{ backgroundColor: headerColor }}> 
-        {/*className="card-header color" style={{ backgroundColor: headerColor }} */}
         </div>
         <div className='card-body'>
           <form>
@@ -66,7 +65,7 @@ const CreateCard = ({ headerColor }) => {
               <label>List items</label>
               {listItems.map((item, index) => (
                 <div key={index} className='row'>
-                  <div className='col-10'>
+                  <div className='col-11'>
                     <input
                       type='text'
                       className='form-control'
@@ -75,7 +74,7 @@ const CreateCard = ({ headerColor }) => {
                       onChange={(event) => handleListItemChange(event, index)}
                     />
                   </div>
-                  <div className='col-2'>
+                  <div className='col-1 d-flex justify-content-end'>
                     <button className='btn btn-secondary btn-deleteTask' onClick={(event) => handleDeleteListItem(event, index)} >
                       <img className='trash-icon' src={trashIcon} alt='delete' />
                     </button>

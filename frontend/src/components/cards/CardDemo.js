@@ -57,7 +57,7 @@ const CardDemo = ({ item }) => {
 
 return (
 <div className="row card-row">
-      <div className="col-md-8">
+      <div className="col-md-8 custom-card-column">
         <div className={`card custom-card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
           <div className="card-header color" style={{ backgroundColor: headerColor }} onClick={toggleCard}>
             <div
