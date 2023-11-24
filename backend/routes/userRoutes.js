@@ -1,7 +1,7 @@
 import express from "express";
 import userModel from "../models/UserModel.js";
 import { hashPassword, comparePassword } from "../middleware/bcryptMiddleware.js";
-import { generateJWT, validateJWT, validateOwnership } from "../middleware/jwtMiddleware.js";
+import { generateJWT, isLoggedIn, validateOwnership } from "../middleware/jwtMiddleware.js";
 
 const userRouter = express.Router();
 
@@ -63,24 +63,32 @@ userRouter.get("/get-user/:id", (request, response) => {
     console.log("[>] GET '/get-user/:id'");
     console.log("User ID", request.params.id);
     
-    var id = request.params.id;
-    try {
-        let token = request.cookies["Bearer"]
-        let valid = validateJWT( token )
-        let correct_id = validateOwnership(token, id)
+    var sendError = false; // If token can't be verified, or a problem arises.
+    var user_id   = request.params.id;
 
-        if ((!valid) || (!correct_id)) {
-            response.status(401).send("Invalid token.");
-            return;
+    try {
+        let token 	= request.cookies["Bearer"]
+
+        if( !isLoggedIn( token )) {
+			sendError = true;
+		}
+
+        if ( !validateOwnership(token, user_id) ) {
+            sendError = true;
         }           
 
     } catch (error) {
-        console.log("[!] Could not validate token", error)
+        console.log( "[!] Error: " + error )
+        sendError = true;
+    }   
+
+    if (sendError) {
+		console.log("[!] Could not validate token")
         response.status(401).send("Invalid token.");
         return;
-    }   
-    
-    userModel.findById(request.params.id)
+	}
+
+    userModel.findById(user_id)
         .then((user) => {
             console.log("[*] User found!", user._id);
             response.status(200).send(user);
@@ -97,24 +105,33 @@ userRouter.patch("/update-user/:id", (request, response) => {
     console.log("User ID", request.params.id);
     console.log("User data", request.body);
 
-    var id = request.params.id
-    try {
-        let token = request.cookies["Bearer"]
-        let valid = validateJWT( token )
-        let correct_id = validateOwnership(token, id)
+    var sendError = false; // If token can't be verified, or a problem arises.
+    var user_id   = request.params.id;
 
-        if ((!valid) || (!correct_id)) {
-            response.status(401).send("Invalid token.");
-            return;
+    try {
+        let token 	= request.cookies["Bearer"]
+
+        if( !isLoggedIn( token )) {
+			sendError = true;
+		}
+
+        if ( !validateOwnership(token, user_id) ) {
+            sendError = true;
         }           
 
     } catch (error) {
-        console.log("[!] Could not validate token", error)
+        console.log( "[!] Error: " + error )
+        sendError = true;
+    }   
+
+    if (sendError) {
+		console.log("[!] Could not validate token")
         response.status(401).send("Invalid token.");
         return;
-    }     
+	}
 
-    userModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
+    // TODO: Validate body? 
+    userModel.findByIdAndUpdate(user_id, request.body, { new: true })
         .then((user) => {
             console.log("[*] User updated!", user);
             response.status(200).send(user);
@@ -130,24 +147,32 @@ userRouter.delete("/delete-user/:id", (request, response) => {
     console.log("[>] DELETE '/delete-user/:id'");
     console.log("User ID", request.params.id);
 
-    var id = request.params.id
-    try {
-        let token = request.cookies["Bearer"]
-        let valid = validateJWT( token )
-        let correct_id = validateOwnership(token, id)
+    var sendError = false; // If token can't be verified, or a problem arises.
+    var user_id   = request.params.id;
 
-        if ((!valid) || (!correct_id)) {
-            response.status(401).send("Invalid token.");
-            return;
+    try {
+        let token 	= request.cookies["Bearer"]
+
+        if( !isLoggedIn( token )) {
+			sendError = true;
+		}
+
+        if ( !validateOwnership(token, user_id) ) {
+            sendError = true;
         }           
 
     } catch (error) {
-        console.log("[!] Could not validate token", error)
+        console.log( "[!] Error: " + error )
+        sendError = true;
+    }   
+
+    if (sendError) {
+		console.log("[!] Could not validate token")
         response.status(401).send("Invalid token.");
         return;
-    }     
+	}
     
-    userModel.findByIdAndDelete(request.params.id)
+    userModel.findByIdAndDelete(user_id)
         .then((user) => {
             console.log("[*] User deleted!", user._id);
             response.status(204).send(user);

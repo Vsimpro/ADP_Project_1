@@ -1,6 +1,7 @@
 import express from 'express';
 import projectModel from '../models/ProjectModel.js';
 import { handleSocketConnections } from '../controller/socket.js';
+import { validateJWT, getOwnerOf, isLoggedIn } from '../middleware/jwtMiddleware.js'; 
 
 const projectRouter = express.Router();
 
@@ -9,23 +10,28 @@ projectRouter.post("/create-project", (request, response) => {
     console.log("[>] POST '/create-project'");
     console.log("Project data", request.body);
 
-    var id;
+    var id; // TODO: Use this to check permissions
 	let sendError = false; // If token can't be verified, or a problem arises.
 
 	try {
-        let token 	= request.cookies["Bearer"]
-		let valid 	= validateJWT( token );
+		let token 	= request.cookies["Bearer"]
+		let _id 	= getOwnerOf( token );
 
-		if (!valid) {
+		if( !isLoggedIn( token )) {
 			sendError = true;
 		}
 
-		id = _id;
-
-    } catch (error) {
-        console.log( error )
+		if ((_id == null) || (_id == undefined)) {
+			sendError = true;
+		
+		} else {
+			id = _id;
+		}
+	
+	} catch (e) {
+		console.log("[!] Error: " + e)
 		sendError = true;
-    }   
+	}
 
 	if (sendError) {
 		console.log("[!] Could not validate token")
@@ -33,6 +39,7 @@ projectRouter.post("/create-project", (request, response) => {
         return;
 	}
 
+    // Validate body??
     var newProject = new projectModel(request.body);
     newProject.save()
         .then((project) => {

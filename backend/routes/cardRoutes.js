@@ -1,6 +1,7 @@
 import express from 'express';
 import cardModel from '../models/CardModel.js';
 import { io } from '../index.js';
+import { validateJWT, getOwnerOf, isLoggedIn } from '../middleware/jwtMiddleware.js'; 
 
 const cardRouter = express.Router();
 
@@ -10,22 +11,27 @@ cardRouter.post("/create-card", (request, response) => {
 	console.log("Card data", request.body);
 
 	var id;
-	let sendError = false; // If token can't be verified, or a problem arises.
+	var sendError = false; // If token can't be verified, or a problem arises.
 
 	try {
         let token 	= request.cookies["Bearer"]
-		let valid 	= validateJWT( token );
+		let _id 	= getOwnerOf( token );
 
-		if (!valid) {
+		if( !isLoggedIn( token )) {
 			sendError = true;
 		}
 
-		id = _id;
+		if ((_id == null) || (_id == undefined)) {
+			sendError = true;
+		
+		} else {
+			id = _id;
+		}
 
-    } catch (error) {
-        console.log( error )
+	} catch (e) {
+		console.log("[!] Error: " + e)
 		sendError = true;
-    }   
+	}
 
 	if (sendError) {
 		console.log("[!] Could not validate token")
@@ -33,6 +39,7 @@ cardRouter.post("/create-card", (request, response) => {
         return;
 	}
 
+	// Validate body ??
 	var newCard = new cardModel(request.body);
 	newCard.save()
 		.then((card) => {
@@ -88,23 +95,31 @@ cardRouter.patch("/update-card/:id", (request, response) => {
 	console.log("Card ID", request.params.id);
 	console.log("Card data", request.body);
 
-	var id;
-	let sendError = false; // If token can't be verified, or a problem arises.
+	var card_body = request.body;
+	var card_id   = request.params.id;
+
+	var id; // Use this to validate Ownership later.
+	var sendError = false; // If token can't be verified, or a problem arises.
 
 	try {
         let token 	= request.cookies["Bearer"]
-		let valid 	= validateJWT( token );
+		let _id 	= getOwnerOf( token );
 
-		if (!valid) {
+		if( !isLoggedIn( token )) {
 			sendError = true;
 		}
 
-		id = _id;
+		if ((_id == null) || (_id == undefined)) {
+			sendError = true;
+		
+		} else {
+			id = _id;
+		}
 
-    } catch (error) {
-        console.log( error )
+	} catch (e) {
+		console.log("[!] Error: " + e)
 		sendError = true;
-    }   
+	}
 
 	if (sendError) {
 		console.log("[!] Could not validate token")
@@ -112,7 +127,8 @@ cardRouter.patch("/update-card/:id", (request, response) => {
         return;
 	}
 
-	cardModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
+	// TODO: Do validations to body
+	cardModel.findByIdAndUpdate(card_id, card_body, { new: true })
 		.then((card) => {
 			console.log("[*] Card updated!", card);
 
@@ -132,23 +148,30 @@ cardRouter.delete("/delete-card/:id", (request, response) => {
 	console.log("[>] DELETE '/delete-card/:id'");
 	console.log("Card ID", request.params.id);
 
-	var id;
-	let sendError = false; // If token can't be verified, or a problem arises.
+	var card_id   = request.params.id;
+
+	var id; // Use this to validate Ownership later.
+	var sendError = false; // If token can't be verified, or a problem arises.
 
 	try {
         let token 	= request.cookies["Bearer"]
-		let valid 	= validateJWT( token );
+		let _id 	= getOwnerOf( token );
 
-		if (!valid) {
+		if( !isLoggedIn( token )) {
 			sendError = true;
 		}
 
-		id = _id;
+		if ((_id == null) || (_id == undefined)) {
+			sendError = true;
+		
+		} else {
+			id = _id;
+		}
 
-    } catch (error) {
-        console.log( error )
+	} catch (e) {
+		console.log("[!] Error: " + e)
 		sendError = true;
-    }   
+	}
 
 	if (sendError) {
 		console.log("[!] Could not validate token")
@@ -156,7 +179,7 @@ cardRouter.delete("/delete-card/:id", (request, response) => {
         return;
 	}
 
-	cardModel.findByIdAndDelete(request.params.id)
+	cardModel.findByIdAndDelete(card_id)
 		.then((card) => {
 			console.log("[*] Card deleted!", card);
 			response.status(204).send(card);

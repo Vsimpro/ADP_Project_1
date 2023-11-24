@@ -1,7 +1,7 @@
 import express from 'express';
 import taskModel from '../models/TaskModel.js';
 import { formatTask } from "../middleware/validationsMiddleware.js";
-import { validateJWT, getOwnerOf } from '../middleware/jwtMiddleware.js'; 
+import { validateJWT, getOwnerOf, isLoggedIn } from '../middleware/jwtMiddleware.js'; 
 
 
 const taskRouter = express.Router();
@@ -15,30 +15,31 @@ taskRouter.post("/create-task", (request, response) => {
 	let sendError = false; // If token can't be verified, or a problem arises.
 
 	try {
-        let token 	= request.cookies["Bearer"]
+		let token 	= request.cookies["Bearer"]
 		let _id 	= getOwnerOf( token );
-		let valid 	= validateJWT( token );
+
+		if( !isLoggedIn( token )) {
+			sendError = true;
+		}
 
 		if ((_id == null) || (_id == undefined)) {
 			sendError = true;
+		
+		} else {
+			id = _id;
 		}
-
-		if (!valid) {
-			sendError = true;
-		}
-
-		id = _id;
-
-    } catch (error) {
-        console.log( error )
+	
+	} catch (e) {
+		console.log("[!] Error: " + e)
 		sendError = true;
-    }   
+	}
 
 	if (sendError) {
 		console.log("[!] Could not validate token")
         response.status(401).send("Invalid token.");
         return;
 	}
+
 
 	let formattedTask = formatTask(request.body, id);
 	if (formattedTask == undefined) {
@@ -81,24 +82,33 @@ taskRouter.patch("/update-task/:id", (request, response) => {
 	console.log("[>] PATCH '/update-task/:id'");
 	console.log("Task ID", request.params.id);
 	console.log("Task data", request.body);
+	
+	// TOOD: Validate.
+	var task_body = request.body;
+	var task_id   = request.params.id;
 
-	var id;
-	let sendError = false; // If token can't be verified, or a problem arises.
+	var id; // TODO: Check permissions with this later.
+	var sendError = false; // If token can't be verified, or a problem arises.
 
 	try {
-        let token 	= request.cookies["Bearer"]
-		let valid 	= validateJWT( token );
+		let token 	= request.cookies["Bearer"]
+		let _id 	= getOwnerOf( token );
 
-		if (!valid) {
+		if( !isLoggedIn( token )) {
 			sendError = true;
 		}
 
-		id = _id;
-
-    } catch (error) {
-        console.log( error )
+		if ((_id == null) || (_id == undefined)) {
+			sendError = true;
+		
+		} else {
+			id = _id;
+		}
+	
+	} catch (e) {
+		console.log("[!] Error: " + e)
 		sendError = true;
-    }   
+	}
 
 	if (sendError) {
 		console.log("[!] Could not validate token")
@@ -107,7 +117,7 @@ taskRouter.patch("/update-task/:id", (request, response) => {
 	}
 
 	// TODO: Validate new Task Body somehow
-	taskModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
+	taskModel.findByIdAndUpdate(task_id, task_body, { new: true })
 		.then((task) => {
 			console.log("[*] Task updated!", task);
 			response.status(200).send(task);
@@ -124,25 +134,32 @@ taskRouter.delete("/delete-task/:id", (request, response) => {
 	console.log("[>] DELETE '/delete-task/:id'");
 	console.log("Task ID", request.params.id);
 
-	var id;
+		
+	// TOOD: Validate.
+	var task_id   = request.params.id;
+
+	var id; // TODO: Use this to check permissions
 	let sendError = false; // If token can't be verified, or a problem arises.
 
 	try {
-        let token 	= request.cookies["Bearer"]
-		let valid 	= validateJWT( token );
+		let token 	= request.cookies["Bearer"]
+		let _id 	= getOwnerOf( token );
 
-		//TODO: Check ownership before deletion !!
-
-		if (!valid) {
+		if( !isLoggedIn( token )) {
 			sendError = true;
 		}
 
-		id = _id;
-
-    } catch (error) {
-        console.log( error )
+		if ((_id == null) || (_id == undefined)) {
+			sendError = true;
+		
+		} else {
+			id = _id;
+		}
+	
+	} catch (e) {
+		console.log("[!] Error: " + e)
 		sendError = true;
-    }   
+	}
 
 	if (sendError) {
 		console.log("[!] Could not validate token")
@@ -150,7 +167,7 @@ taskRouter.delete("/delete-task/:id", (request, response) => {
         return;
 	}
 
-	taskModel.findByIdAndDelete(request.params.id)
+	taskModel.findByIdAndDelete(task_id)
 		.then((task) => {
 			console.log("[*] Task deleted!", task);
 			response.status(204).send(task);

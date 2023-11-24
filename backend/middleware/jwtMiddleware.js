@@ -50,6 +50,7 @@ const validateJWT = (token) => {
     return true;
 } 
 
+// Returns the ID of a valid token. Null if not valid
 const getOwnerOf = (token) => { 
     let id = undefined;
     let token_id = undefined
@@ -79,7 +80,7 @@ const getOwnerOf = (token) => {
     return id;
 } 
 
-
+// Validate ID belongs to Token
 const validateOwnership = (token, id) => {
     let token_id = ""
     let decoded_token = ""
@@ -104,4 +105,27 @@ const validateOwnership = (token, id) => {
     return true;
 }
 
-export { generateJWT, validateJWT, validateOwnership, getOwnerOf };
+const isLoggedIn = ( token ) => {
+    if ((!token) || (token == null) || (token == undefined)) {
+        return false;
+    }
+
+    try {
+		let valid 	= validateJWT( token );
+
+		if (!valid) {
+            return false;
+		}
+
+    } catch (e) {
+        console.log("[!] Could not verify if user with this token is logged in. Details:")
+        console.log("" + token)
+        console.log( e )
+
+        return false;
+    }
+
+    return true;
+} 
+
+export { generateJWT, validateJWT, validateOwnership, getOwnerOf, isLoggedIn };
