@@ -23,12 +23,13 @@
     justify-content: center;
     align-items: center;
     height: 38px;
-    padding: 5px 15px;
+    width: 38px;
+    
   }
   
   .trash-icon {
-    fill: black;
-    height: 100%;
+    fill: #fff;
+    height: 20px;
     width: auto;
   }
 
