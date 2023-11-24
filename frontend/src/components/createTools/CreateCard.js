@@ -1,40 +1,99 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import './CreateCard.css';
-
-// TODO toiminnallisuus listan luomiselle
-// TODO lomakkeen tietojen lähetys tietokantaan
+import trashIcon from "../../icons/trash-solid.svg";
+import axios from 'axios';
 
 const CreateCard = () => {
+  const cardRef = useRef();
+  const [listItems, setListItems] = useState([""]);
+  const userId = JSON.parse(localStorage.getItem('id'));
+
+  const saveCardToDb = async () => {
+    // toiminnallisuus listan luomiselle
+    const cardElement = cardRef.current;
+    const cardData = {
+      title: cardElement.querySelector('.card-title').value,
+      description: cardElement.querySelector('.card-description').value,
+      userId: userId,
+      listItems: listItems.map(item => ({ task: item, isDone: false }))
+    };
+    console.log(cardData);
+    // TODO lomakkeen tietojen tallennus tietokantaan
+    try {
+      await axios.post(`http://localhost:8123/card/create-card/`, cardData);
+      // emittaa tieto että projekti on päivitetty
+      //TODO: tämä saattaa muuttua kun projektisivu tulee käyttöön
+      //socket.emit("project:update");
+    } catch (error) {
+      console.error('Virhe tallennettaessa:', error);
+    }
+
+  };
+
+  const addNewListItem = () => {
+    setListItems([...listItems, '']);
+  };
+
+  const handleListItemChange = (event, index) => {
+    const newListItems = [...listItems];
+    newListItems[index] = event.target.value;
+    setListItems(newListItems);
+  };
+
+  const handleDeleteListItem = (event, index) => {
+    event.preventDefault();
+    const newListItems = [...listItems];
+    newListItems.splice(index, 1);
+    setListItems(newListItems);
+  };
+
+
   return (
     <div className='createCard'>
       <div className='card'>
-      <div className='card-header custom-header'>
-      </div>
-      <div className='card-body'>
-        <form>
-          <div className='form-group'>
-            <label>Title</label>
-            <input type='text' className='form-control' placeholder='Add title...' />
-
-            <label>Description</label>
-            <textarea className='form-control' rows='3' placeholder='Add description...'></textarea>
-
-            <label>List items</label>
-            <input type='text' className='form-control' placeholder='Add list items...' />
-
-            <button className='btn btn-outline-dark'>Add New</button>
-          </div>
-        </form>
-      </div>
-      <div>
-        <div className='buttons-container'>
-          <button className='btn btn-createCard'>Create</button>
+        <div className='card-header custom-header'>
         </div>
-      </div>
+        <div className='card-body'>
+          <form>
+            <div className='form-group' ref={cardRef}>
+              <label>Title</label>
+              <input type='text' className='form-control card-title' placeholder='Add title...' />
+
+              <label>Description</label>
+              <textarea className='form-control card-description' rows='3' placeholder='Add description...'></textarea>
+
+              <label>List items</label>
+              {listItems.map((item, index) => (
+                <div key={index} className='row'>
+                  <div className='col-11'>
+                    <input
+                      type='text'
+                      className='form-control'
+                      placeholder='Add list items...'
+                      value={item}
+                      onChange={(event) => handleListItemChange(event, index)}
+                    />
+                  </div>
+                  <div className='col-1'>
+                    <button className='btn btn-danger col-2 btn-deleteTask' onClick={(event) => handleDeleteListItem(event, index)} >
+                      <img className='trash-icon' src={trashIcon} alt='delete' />
+                    </button>
+                  </div>
+                </div>
+              ))}
+
+              <button type='button' className='btn btn-outline-dark' onClick={addNewListItem}>Add New</button>
+            </div>
+          </form>
+        </div>
+        <div>
+          <div className='buttons-container'>
+            <button className='btn btn-createCard' onClick={saveCardToDb}>Create</button>
+          </div>
+        </div>
       </div>
     </div>
   );
-  
 };
 
 export default CreateCard;

@@ -2,6 +2,7 @@ import React from 'react';
 import './CreateCard.css'
 
 // TODO kortin kategorian / headerin värin vaihtaminen
+// jäsenten hallinta
 
 const EditTools = () => {
   return (

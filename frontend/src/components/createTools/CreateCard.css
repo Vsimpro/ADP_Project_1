@@ -17,7 +17,21 @@
     height: 30px;
     
   }
+
+  .btn-deleteTask {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 38px;
+    padding: 5px 15px;
+  }
   
+  .trash-icon {
+    fill: black;
+    height: 100%;
+    width: auto;
+  }
+
   .btn-createCard {
     width: 240px;
     color: #fff;
@@ -53,6 +67,10 @@
   .colorButton{
     height: 30px;
     cursor: pointer;
+
+  }
+  .colorButton:hover{
+   opacity: 60%;
 
   }
 
