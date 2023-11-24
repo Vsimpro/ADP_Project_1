@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CardDemo from './CardDemo';
 import { useFetchCards } from '../../hooks/useFetchCards.js';
 import socket from '../../controller/socket.js';
+import AddNewCardButton from '../createTools/AddNewCardButton';
 
 const CardList = ({ userId, HOST, PORT }) => {
   const [listData, setListData] = useState([]);
@@ -26,7 +27,9 @@ const CardList = ({ userId, HOST, PORT }) => {
         {listData.map((item, index) => (
           <CardDemo key={index} item={item} />
         ))}
+         <AddNewCardButton />
       </div>
+     
     </div>
   );
 };
