@@ -8,6 +8,13 @@ const CreateCard = () => {
   const [listItems, setListItems] = useState([""]);
   const userId = JSON.parse(localStorage.getItem('id'));
 
+  // getCookie = (name) {
+  //   const cookieArray = document.cookie.split(';');
+  //   for (let i = 0; i < cookieArray.length; i++){
+  //     const cookiepa
+  //   }
+  // }
+
   const saveCardToDb = async () => {
     // toiminnallisuus listan luomiselle
     const cardElement = cardRef.current;
@@ -20,7 +27,14 @@ const CreateCard = () => {
     console.log(cardData);
     // TODO lomakkeen tietojen tallennus tietokantaan
     try {
-      await axios.post(`http://localhost:8123/card/create-card/`, cardData);
+      await axios.post(`http://localhost:8123/card/create-card/`,
+        cardData,
+        {
+          withCredentials: true,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          }
+        });
       // emittaa tieto että projekti on päivitetty
       //TODO: tämä saattaa muuttua kun projektisivu tulee käyttöön
       //socket.emit("project:update");

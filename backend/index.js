@@ -11,6 +11,11 @@ import routes from "./routes/router.js";
 
 dotenv.config();
 
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true
+  }
+
 /* Global Variables */
 var HOST = process.env.HOST;
 var PORT = process.env.PORT;
@@ -32,7 +37,7 @@ export const io = new Server(httpServer, {
 
 });
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(json());
 app.use(cookieParser());
 
