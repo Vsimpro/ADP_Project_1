@@ -3,7 +3,7 @@ import './CreateCard.css';
 import trashIcon from "../../icons/trash-solid.svg";
 import axios from 'axios';
 
-const CreateCard = () => {
+const CreateCard = ({ headerColor }) => {
   const cardRef = useRef();
   const [listItems, setListItems] = useState([""]);
   const userId = JSON.parse(localStorage.getItem('id'));
@@ -65,7 +65,7 @@ const CreateCard = () => {
   return (
     <div className='createCard'>
       <div className='card'>
-        <div className='card-header custom-header '>
+        <div className='card-header custom-header' style={{ backgroundColor: headerColor }}> 
         </div>
         <div className='card-body'>
           <form>
@@ -88,8 +88,8 @@ const CreateCard = () => {
                       onChange={(event) => handleListItemChange(event, index)}
                     />
                   </div>
-                  <div className='col-1'>
-                    <button className='btn btn-danger col-2 btn-deleteTask' onClick={(event) => handleDeleteListItem(event, index)} >
+                  <div className='col-1 d-flex justify-content-end'>
+                    <button className='btn btn-secondary btn-deleteTask' onClick={(event) => handleDeleteListItem(event, index)} >
                       <img className='trash-icon' src={trashIcon} alt='delete' />
                     </button>
                   </div>
