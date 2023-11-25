@@ -10,11 +10,11 @@ import socket from './controller/socket.js';
 import Profile from './components/profile/Profile.jsx';
 import Create from './components/createTools/Create.jsx';
 
-const HOST = "localhost"; // todo hae tämä .env tiedostosta
-const PORT = "8123"; // todo hae tämä .env tiedostosta
+const HOST = "localhost"; // TODO: hae tämä .env tiedostosta
+const PORT = "8123"; // TODO: hae tämä .env tiedostosta
 
 function App() {
-  const userId = localStorage.getItem('id') // tulisiko tämä muuttaa tarkastamaan onko jwt token olemassa / validi?
+  const userId = localStorage.getItem('id'); // tulisiko tämä muuttaa tarkastamaan onko jwt token olemassa / validi?
   const [currentForm, setCurrentForm] = useState('login');
   const [isLoggedIn, setisLoggedIn] = useState(Boolean(userId));
 
@@ -68,8 +68,8 @@ useEffect(() => {
         <Routes>
           <Route path="/login" element={loginElement} />
           <Route path="/" element={isLoggedIn ? <CardList userId={userId} HOST={HOST} PORT={PORT} /> : <Navigate to="/login" />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/create" element={<Create userId={userId} HOST={HOST} PORT={PORT}/>} />
+          <Route path="/profile" element={<Profile userId={userId} HOST={HOST} PORT={PORT}/>} />
         </Routes>
       </div>
     </Router>

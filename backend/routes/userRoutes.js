@@ -91,7 +91,14 @@ userRouter.get("/get-user/:id", (request, response) => {
     userModel.findById(user_id)
         .then((user) => {
             console.log("[*] User found!", user._id);
-            response.status(200).send(user);
+            //return only users id name and email
+            //returning hashed password would be a bad idea
+            response.status(200).send({
+                _id: user._id,
+                name: user.name,
+                email: user.email
+
+            });
         })
         .catch((error) => {
             console.log("[!] Error finding user", error);

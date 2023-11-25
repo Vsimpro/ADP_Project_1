@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ColorSetter = () => {
+const ColorSetter = ({userInitials}) => {
   const [bgColor, setBgColor] = useState('');
 
   const handleColorChange = (color) => {
@@ -12,7 +12,7 @@ const ColorSetter = () => {
     <div>
       <div className="row">
         <div className="d-flex justify-content-center align-items-center">
-          <div className='profilePicPlaceholder' style={{ backgroundColor: bgColor }}>S</div>
+          <div className='profilePicPlaceholder' style={{ backgroundColor: bgColor }}>{userInitials}</div>
         </div>
       </div>
       <div className='row'>
