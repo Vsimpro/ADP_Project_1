@@ -9,6 +9,7 @@ import CardList from './components/cards/CardList';
 import socket from './controller/socket.js';
 import Profile from './components/profile/Profile.jsx';
 import Create from './components/createTools/Create.jsx';
+import ProjectPage from './components/project/ProjectPage.jsx';
 
 const HOST = "localhost"; // TODO: hae tämä .env tiedostosta
 const PORT = "8123"; // TODO: hae tämä .env tiedostosta
@@ -18,26 +19,26 @@ function App() {
   const [currentForm, setCurrentForm] = useState('login');
   const [isLoggedIn, setisLoggedIn] = useState(Boolean(userId));
 
-//TODO: kaikki projektit johon käyttäjä kuuluu 
-// => joinaa projectId:llä socket.io roomiin
-// kuuntele niissä huoneissa "project:updated" eventtiä
-// => käske hakemaan databasesta päivitetty tieto
-// ??? millä tasolla uusi tieto haetaan Projekti => Kortti => Taski???
-useEffect(() => {
-  socket.on("connect", () => {
-    console.log("Socket id: " + socket.id + " Connected: " + socket.connected);
-  });
+  //TODO: kaikki projektit johon käyttäjä kuuluu 
+  // => joinaa projectId:llä socket.io roomiin
+  // kuuntele niissä huoneissa "project:updated" eventtiä
+  // => käske hakemaan databasesta päivitetty tieto
+  // ??? millä tasolla uusi tieto haetaan Projekti => Kortti => Taski???
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log("Socket id: " + socket.id + " Connected: " + socket.connected);
+    });
 
-  socket.on("disconnect", () => {
-    console.log("Socket disconnected");
-  });
+    socket.on("disconnect", () => {
+      console.log("Socket disconnected");
+    });
 
-  // Clean up the effect
-  return () => {
-    socket.off("connect");
-    socket.off("disconnect");
-  }
-}, []);
+    // Clean up the effect
+    return () => {
+      socket.off("connect");
+      socket.off("disconnect");
+    }
+  }, []);
 
   // määrittele näytettävä login elementti
   // jos käyttäjä on kirjautunut sisään, ohjaa etusivulle
@@ -68,8 +69,9 @@ useEffect(() => {
         <Routes>
           <Route path="/login" element={loginElement} />
           <Route path="/" element={isLoggedIn ? <CardList userId={userId} HOST={HOST} PORT={PORT} /> : <Navigate to="/login" />} />
-          <Route path="/create" element={<Create userId={userId} HOST={HOST} PORT={PORT}/>} />
-          <Route path="/profile" element={<Profile userId={userId} HOST={HOST} PORT={PORT}/>} />
+          <Route path="/create" element={<Create userId={userId} HOST={HOST} PORT={PORT} />} />
+          <Route path="/profile" element={<Profile userId={userId} HOST={HOST} PORT={PORT} />} />
+          <Route path="/project" element={<ProjectPage userId={userId} HOST={HOST} PORT={PORT} />} />
         </Routes>
       </div>
     </Router>
