@@ -44,7 +44,14 @@ const CardDemo = ({ item }) => {
     console.log(updatedData); // logita päivitettävät tiedot
 
     try {
-      await axios.patch(`http://localhost:8123/card/update-card/${item._id}`, updatedData);
+      await axios.patch(`http://localhost:8123/card/update-card/${item._id}`,
+       updatedData,
+       {
+        withCredentials: true,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        }
+      });
       setIsEditMode(false);
       // emittaa tieto että projekti on päivitetty
       //TODO: tämä saattaa muuttua kun projektisivu tulee käyttöön

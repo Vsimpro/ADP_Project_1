@@ -1,18 +1,13 @@
 import { useEffect, useCallback } from 'react';
+import axios from 'axios';
 
 export const useFetchCards = (isLoggedIn, userId, setListData, HOST, PORT) => {
   const fetchCards = useCallback(() => {
     if (isLoggedIn) {
-      fetch(`http://${HOST}:${PORT}/card/get-all-cards/${JSON.parse(userId)}`)
+      axios.get(`http://${HOST}:${PORT}/card/get-all-cards/${JSON.parse(userId)}`)
         .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log(data);
-          setListData(data);
+          console.log(response.data);
+          setListData(response.data);
         })
         .catch((error) => {
           console.log(error);
