@@ -1,7 +1,7 @@
 import express from 'express';
 import projectModel from '../models/ProjectModel.js';
 import { handleSocketConnections } from '../controller/socket.js';
-import { validateJWT, getOwnerOf, isLoggedIn } from '../middleware/jwtMiddleware.js'; 
+import { validateJWT, getOwnerOf, isLoggedIn } from '../middleware/jwtMiddleware.js';
 
 const projectRouter = express.Router();
 
@@ -11,33 +11,33 @@ projectRouter.post("/create-project", (request, response) => {
     console.log("Project data", request.body);
 
     var id; // TODO: Use this to check permissions
-	let sendError = false; // If token can't be verified, or a problem arises.
+    var sendError = false; // If token can't be verified, or a problem arises.
 
-	try {
-		let token 	= request.cookies["Bearer"]
-		let _id 	= getOwnerOf( token );
+    try {
+        let token = request.cookies["Bearer"]
+        let _id = getOwnerOf(token);
 
-		if( !isLoggedIn( token )) {
-			sendError = true;
-		}
+        if (!isLoggedIn(token)) {
+            sendError = true;
+        }
 
-		if ((_id == null) || (_id == undefined)) {
-			sendError = true;
-		
-		} else {
-			id = _id;
-		}
-	
-	} catch (e) {
-		console.log("[!] Error: " + e)
-		sendError = true;
-	}
+        if ((_id == null) || (_id == undefined)) {
+            sendError = true;
 
-	if (sendError) {
-		console.log("[!] Could not validate token")
+        } else {
+            id = _id;
+        }
+
+    } catch (e) {
+        console.log("[!] Error: " + e)
+        sendError = true;
+    }
+
+    if (sendError) {
+        console.log("[!] Could not validate token")
         response.status(401).send("Invalid token.");
         return;
-	}
+    }
 
     // Validate body??
     var newProject = new projectModel(request.body);
@@ -95,28 +95,28 @@ projectRouter.patch("/update-project/:id", (request, response) => {
     console.log("Project data", request.body);
 
     var id;
-	let sendError = false; // If token can't be verified, or a problem arises.
+    let sendError = false; // If token can't be verified, or a problem arises.
 
-	try {
-        let token 	= request.cookies["Bearer"]
-		let valid 	= validateJWT( token );
+    try {
+        let token = request.cookies["Bearer"]
+        let valid = validateJWT(token);
 
-		if (!valid) {
-			sendError = true;
-		}
+        if (!valid) {
+            sendError = true;
+        }
 
-		id = _id;
+        id = _id;
 
     } catch (error) {
-        console.log( error )
-		sendError = true;
-    }   
+        console.log(error)
+        sendError = true;
+    }
 
-	if (sendError) {
-		console.log("[!] Could not validate token")
+    if (sendError) {
+        console.log("[!] Could not validate token")
         response.status(401).send("Invalid token.");
         return;
-	}
+    }
 
     projectModel.findByIdAndUpdate(request.params.id, request.body, { new: true })
         .then((project) => {

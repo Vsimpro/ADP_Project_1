@@ -1,0 +1,31 @@
+.project {
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+  background-color: rgb(255, 255, 255);
+}
+
+.project-header {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  width: 100%;
+  background-color: rgb(112, 198, 127);
+}
+
+.project-body {
+  padding: 10px 10px;
+  width: 100%;
+  min-height: 70px;
+}
+
+.project-description {
+  text-align: left;
+}
+
+.project-page {
+  border-radius: 10px;
+  background-color: rgba(240, 248, 255, 0.733) !important;
+}
+
+.p-2 {
+  color: black;
+}
