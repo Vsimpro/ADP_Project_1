@@ -36,6 +36,7 @@ const Register = ({ onFormSwitch, setIsLoggedIn }) => {
   }
 
   return (
+    <div className="body-bgColor">
     <div className="auth-form-container">
       <h2>Register</h2>
       <form className="register-form" onSubmit={handleSubmit}>
@@ -45,10 +46,11 @@ const Register = ({ onFormSwitch, setIsLoggedIn }) => {
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@example.com" id="email" name="email" />
         <label htmlFor="password">Password</label>
         <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="*********" id="password" name="password" />
-        <button type="submit">Register</button>
+        <button className="btn btn-logIn" type="submit">Register</button>
       </form>
       <button className="link-btn" onClick={() => onFormSwitch('login')}>Already have an account? Login here.</button>
     </div >
+    </div>
   )
 }
 
