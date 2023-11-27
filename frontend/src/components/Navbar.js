@@ -26,14 +26,15 @@ function Navbar() {
 
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/Profile">Profile</a>
-              </li>
+             
               <li className='nav-item'>
               <a className="nav-link" href="/">Cards</a>
               </li>
               <li className='nav-item'>
               <a className="nav-link" href="/create">Create New</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/Profile">Profile</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href='/login' onClick={handleLogout}>Log Out</a>

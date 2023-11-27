@@ -37,27 +37,33 @@ const ProjectPage = ({ userId, HOST, PORT }) => {
   console.log(projectData)
 
   return (
-    <div className='container project-page'>
-      <div>
-        <h1>Home</h1>
-        <div className="">
+    <div className='container'>
+      <div className="homepage-container">
+        <div className="centered-content">
+          <img src={process.env.PUBLIC_URL + '/logos/logo-01.png'} alt="Your Logo" />
+          <br />
+          <p>(Tähän jotain etusivun contenttii esim logo ja muuta tekstii 😀)</p>
+        </div>
+      </div>
+
+        <div className="projetContainer">
           <h3>Projects</h3>
           <div className="projects-container row g-3">
             {projectData.map((project, index) => (
               <Project key={index} item={project} />
             ))}
-            <div className='col-6'>
-              <div className='project'>
+            <div className='col-6 custom-btnColumn'>
+            <button className="btn addNewProjectCard" ref={divRef} onClick={handleAddProject}>+</button>
+          {/*     <div className='card project'>
                 <div className='project-header'>
                   <div className="p-1">Create New Project</div>
                 </div>
                 <div className='project-body' ref={divRef} onClick={handleAddProject}>
                   <div className='project-description'>
                     <div className='p-2'>Click here to add new project</div>
-                  </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

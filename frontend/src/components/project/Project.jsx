@@ -17,7 +17,7 @@ const Project = ({ key, item }) => {
 
   return (
     <div className='col-6'>
-      <div className='project' ref={projectRef} onClick={openProjectCards}>
+      <div className='card project' ref={projectRef} onClick={openProjectCards}>
         <div className='project-header'>
           <div className="p-1">{item.name}</div>
         </div>

@@ -1,18 +1,34 @@
 .project {
-  border-radius: 5px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
   background-color: rgb(255, 255, 255);
 }
 
+.projetContainer{
+  padding: 40px;
+}
+
+.homepage-container{
+  margin:40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.centered-content {
+  text-align: center;
+}
+
 .project-header {
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+/*   border-top-right-radius: 5px;
+  border-top-left-radius: 5px; */
   width: 100%;
-  background-color: rgb(112, 198, 127);
+  height: 38px;
+  padding: 16px;
+  display: flex;
+  align-items: center; 
+  background-color: rgb(201, 239, 153);
 }
 
 .project-body {
-  padding: 10px 10px;
+  padding: 16px;
   width: 100%;
   min-height: 70px;
 }
@@ -23,9 +39,41 @@
 
 .project-page {
   border-radius: 10px;
-  background-color: rgba(240, 248, 255, 0.733) !important;
 }
 
 .p-2 {
   color: black;
+}
+
+.custom-btnColumn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addNewProjectCard{
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  background-color: rgb(169, 159, 255);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 24px;
+  /* border: 1px solid black; */
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.addNewProjectCard:hover{
+background-color: rgb(138, 125, 255);
+color: #fff;
+}
+
+
+@media (max-width: 767px) {
+   
+  .projetContainer{
+    padding: 40px 10px;
+  }
+
+
 }

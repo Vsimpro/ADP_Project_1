@@ -37,7 +37,7 @@ const CreateProject = ({ headerColor }) => {
 
   return (
     <div className='createProject'>
-      <div className='project'>
+      <div className='card project'>
         <div className='project-header custom-header' style={{ backgroundColor: headerColor }}>
         </div>
         <div className='project-body'>

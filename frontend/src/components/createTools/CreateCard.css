@@ -129,7 +129,7 @@
   .addNewCardButton{
     position: fixed;
     top: 100px;
-    right: 120px;
+    right: 150px;
     z-index: 99;
     width: 60px;
     height: 60px;

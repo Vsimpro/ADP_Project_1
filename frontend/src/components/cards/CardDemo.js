@@ -64,7 +64,7 @@ const CardDemo = ({ item }) => {
 
 return (
 <div className="row card-row">
-      <div className="col-md-8 custom-card-column">
+      <div className="col-md-9 custom-card-column">
         <div className={`card custom-card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
           <div className="card-header color" style={{ backgroundColor: headerColor }} onClick={toggleCard}>
             <div
@@ -109,7 +109,7 @@ return (
           </div>
         </div>
       </div>
-      <div className="col-md-4">
+      <div className="col-md-3">
       {isEditMode && <EditTools onColorChange={setHeaderColor} />} 
 
       </div>

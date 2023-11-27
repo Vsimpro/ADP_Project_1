@@ -11,6 +11,9 @@
 
 .card-row{
   margin: 40px;
+  display: flex;
+  justify-content: center;
+ 
 }
 .custom-card-column{
   max-width: 500px;
