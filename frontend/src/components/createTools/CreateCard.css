@@ -1,7 +1,7 @@
-.floatingElements{
+.floatingContainer{ 
   width: 768px;
-  background-color: rgb(255, 255, 255);
-  padding: 60px 20px;
+  background-color: rgba(243, 98, 98,) !important;
+  padding: 20px;
   text-align: left;
  
 }
@@ -17,6 +17,10 @@
     background-color: #ececec;
     height: 38px;
     
+  }
+
+  .whiteHeading{
+    color: #fff;
   }
 
   .btn-deleteTask {
@@ -86,26 +90,23 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* 50% black overlay */
+    background-color: rgba(0, 0, 0, 0.7); /* 50% black overlay */
     display: flex;
     justify-content: center;
     align-items: center;
   }
   
   .close-button {
- 
     font-size: 20px;
     cursor: pointer;
     color: black;
   }
-
 
   .custom-column {
     margin: 0;
   }
 
   .addNewCardButton-container{
-    
       position: fixed;
       bottom: 40px;
       right: 40px;
