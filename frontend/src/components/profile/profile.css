@@ -1,6 +1,10 @@
-.container.profilePage{
-    max-width: 500px;
+.profilePage{
+    width: 500px;
     text-align: left;
+    padding: 40px 60px;
+    background-color: #F5F5F5;
+    margin: 20px;
+    border: 1px solid #000;
 }
 
 h1, h2, h3, p{
@@ -14,7 +18,6 @@ label{
 }
 
 .profilePicPlaceholder{
-    
   height: 70px;
   width: 70px;
   border-radius: 50%;
@@ -65,4 +68,12 @@ label{
     opacity: 60%;
    
   }
+
+  @media (max-width: 767px) {
+    .profilePage{
+      width: 90%;
+      padding: 60px 0;
+    }
+  }
+
   

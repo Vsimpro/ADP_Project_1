@@ -58,9 +58,9 @@ const Profile = ({ userId, HOST, PORT }) => {
 
 
   return (
-    <div className='container profilePage'>
-      <div>
-        <h1>Profile</h1>
+    <div className='col-12 d-flex justify-content-center container'>
+      <div className='profilePage'>
+        <h3>Profile</h3>
         <ColorSetter userInitials={userInitials} />
 
         <form>

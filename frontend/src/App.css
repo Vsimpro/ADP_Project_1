@@ -1,20 +1,36 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: #F5F5F5;
+  /* background-color: #032838 !important; */
+  background: linear-gradient(to bottom, #005A84, #022D4C, #072B3A);
+
 }
-.container{
+.container {
   max-width: 90%;
   min-width: 300px;
-  background-color: #F5F5F5 !important;
-  margin: 0px;
   padding: 60px 40px;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .main-content {
-  background-color: white;
-  margin: 20px;
-  padding: 20px;
+  display: flex;
+  justify-content: center;
+
 }
+
+
+
+
+/* .App {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}  */
+
 
 .navbar{
   padding: 10px 20px;
@@ -30,8 +46,7 @@ body {
       padding: 10px;
   }
   .container {
-      background-color: white;
       margin: 10px;
-      padding: 60px 10px;
+      padding: 60px 5px;
     }
 }

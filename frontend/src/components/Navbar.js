@@ -10,7 +10,7 @@ function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">Home</a>
+          <a className="navbar-brand" href="/project">Home</a>
 
           <button
             className="navbar-toggler"

@@ -1,15 +1,12 @@
-body{
-  background-color: #F5F5F5;
-}
 #cards-container {
-  max-width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .card{
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  border-color: #000000;
 }
 
 .card-row{
@@ -20,7 +17,6 @@ body{
 }
 .custom-card {
   max-width: 500px;
- /*  margin: 40px 0px; */
   color: #000000;
   text-align: left;
   max-height: 200px;
@@ -125,16 +121,16 @@ body{
       background-color: #F5F5F5;
     }
 
-  .EditTools-container {
+ /*  .EditTools-container {
     max-width: 100%;
     display: flex;
     flex-direction: column;  
     align-items: left;     
     margin: 10px 10px 10px -5px;
     border-radius: 5px;
-  }
+  } */
 
-  .EditTools-container .btn {
+/*   .EditTools-container .btn {
     background-color: rgb(199, 199, 199);
     font-size: 12px;
     color: #000000;
@@ -145,7 +141,7 @@ body{
   }
   .EditTools-container .btn:hover {
     background-color: #adadad;
-  }
+  } */
 
   .edit-mode {
     display: grid;
