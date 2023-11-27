@@ -23,7 +23,7 @@ const EditTools = ({ onColorChange }) => {
       </div>
       <div className='row'>
         <div className='col d-flex justify-content-left'>
-          <button className='btn btn-outline-dark'>Members</button>
+          <button className='btn btn-outline-dark membersButton'>Members</button>
         </div>
       </div>
     </div>

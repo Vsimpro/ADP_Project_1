@@ -64,21 +64,23 @@
     background-color: rgb(255, 255, 255) !important;
     text-align: left;
     margin-bottom: 20px;
-    max-width: 150px;
+    width: 150px;
     /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19); */
     border-radius: 0px !important;
-    border: 1px solid #000 !important;
+    border: 1px solid #000;
     padding: 10px;
  
   }
 
-  .editToolsContainer .btn{
-    width: 120px;
-    margin: 5px;
 
+  .membersButton{
+    width: 100px;
+    margin: 5px;
   }
   .colorButton{
+    width: 100px;
     height: 30px;
+    margin: 5px;
     cursor: pointer;
 
   }
@@ -151,7 +153,9 @@
   @media (max-width: 767px) {
    
     .editToolsContainer{
-      max-width: 100%;
+      width: 100%;
+      border: 0px;
+      margin-bottom: 10px;
     }
     .floatingElements{
       width: 100%;
@@ -172,7 +176,9 @@
       max-width: 800px;
       text-align: left;
       padding: 40px 10px;
-      background-color: #F5F5F5;
-      border: 1px solid #000;
+      background-color: #f5f5f500;
+      border: 0px solid #000;
     }
+
+
   }
