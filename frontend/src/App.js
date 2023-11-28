@@ -72,6 +72,7 @@ function App() {
           <Route path="/create" element={<Create userId={userId} HOST={HOST} PORT={PORT} />} />
           <Route path="/profile" element={<Profile userId={userId} HOST={HOST} PORT={PORT} />} />
           <Route path="/cards" element={<CardList userId={userId} HOST={HOST} PORT={PORT} />} />
+          <Route path="/cards/:projectId" element={<CardList userId={userId} HOST={HOST} PORT={PORT} />} />
         </Routes>
       </div>
     </Router>

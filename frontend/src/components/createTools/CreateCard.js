@@ -2,12 +2,13 @@ import React, { useState, useRef } from 'react';
 import './CreateCard.css';
 import trashIcon from "../../icons/trash-solid.svg";
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const CreateCard = ({ headerColor }) => {
   const cardRef = useRef();
   const [listItems, setListItems] = useState([""]);
   const userId = JSON.parse(localStorage.getItem('id'));
-
+ const {projectId} = useParams();
   // getCookie = (name) {
   //   const cookieArray = document.cookie.split(';');
   //   for (let i = 0; i < cookieArray.length; i++){
@@ -21,7 +22,7 @@ const CreateCard = ({ headerColor }) => {
     const cardData = {
       title: cardElement.querySelector('.card-title').value,
       description: cardElement.querySelector('.card-description').value,
-      userId: userId,
+      projectId: projectId,
       listItems: listItems.map(item => ({ task: item, isDone: false }))
     };
     console.log(cardData);

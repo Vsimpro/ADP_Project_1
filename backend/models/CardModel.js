@@ -4,7 +4,7 @@ const cardSchema = new Schema({
 	category: { type: String, default: "To-Do" }, // TODO: tarvitaanko vai voiko poistaa
 	title: { type: String, required: true },
 	description: { type: String, required: false },
-	userId: [{ type: String, required: true }],
+	projectId: [{ type: String, required: true }],
 	listItems: [{
     _id: { type: Schema.Types.ObjectId, auto: true },
     task: { type: String, required: true },

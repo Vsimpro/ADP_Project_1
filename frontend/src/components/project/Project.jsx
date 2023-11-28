@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import './Project.css';
 
 const Project = ({ key, item }) => {
   const projectRef = useRef();
+  const navigate = useNavigate();
 
   const openProjectCards = () => {
-    console.log("Open projects cardpage")
+    console.log("Open projects cardpage");
+    navigate(`/cards/${item._id}`)
   }
   //console.log(item);
   console.log("projekti id: " + item._id);
@@ -27,7 +30,7 @@ const Project = ({ key, item }) => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

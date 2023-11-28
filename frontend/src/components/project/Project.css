@@ -1,5 +1,9 @@
 .project {
   background-color: rgb(255, 255, 255);
+  transition: background-color 0.3s ease;
+}
+.project:hover {
+  background-color: #f5f5f5;
 }
 
 .projetContainer{

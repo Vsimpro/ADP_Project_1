@@ -3,11 +3,13 @@ import CardDemo from './CardDemo';
 import { useFetchCards } from '../../hooks/useFetchCards.js';
 import socket from '../../controller/socket.js';
 import AddNewCardButton from '../createTools/AddNewCardButton';
+import { useParams } from 'react-router-dom';
 
 const CardList = ({ userId, HOST, PORT }) => {
   const [listData, setListData] = useState([]);
+  const { projectId } = useParams();
 
-  const fetchCards = useFetchCards(true, userId, setListData, HOST, PORT);
+  const fetchCards = useFetchCards(true, projectId, setListData, HOST, PORT);
 
   useEffect(() => {
     const handleProjectUpdated = () => {
