@@ -40,9 +40,7 @@ const ProjectPage = ({ userId, HOST, PORT }) => {
     <div className='container'>
       <div className="homepage-container">
         <div className="centered-content">
-          <br />
-          <h3>DODO</h3>
-          <p>(Tähän jotain etusivun contenttii esim logo ja muuta tekstii 😀)</p>
+          <img className="largeLogo" src={process.env.PUBLIC_URL + '/logos/logo-01.png'} alt="Logo" />
         </div>
       </div>
 

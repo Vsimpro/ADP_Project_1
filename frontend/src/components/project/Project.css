@@ -7,13 +7,20 @@
 }
 
 .homepage-container{
-  margin:40px;
+  margin: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   min-height: 120px;
-  background-color: #e6f4f7;
+  background-color: #00D2FF;
+  
+
+}
+
+.largeLogo{
+  width: 200px;
+  height: 100%;
+  margin: 20px;
 }
 .centered-content {
   text-align: center;
