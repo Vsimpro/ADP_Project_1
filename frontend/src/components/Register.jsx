@@ -16,7 +16,7 @@ const Register = ({ onFormSwitch, setIsLoggedIn }) => {
       body: JSON.stringify({
         email: email,
         password: pass,
-        name: email,
+        name: name,
       })
     })
       .then(response => {

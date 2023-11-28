@@ -2,13 +2,16 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import socket from '../../controller/socket';
 import EditTools from '../createTools/EditTools';
+import { useParams } from 'react-router-dom';
 
 
 const CardDemo = ({ item }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [headerColor, setHeaderColor] = useState('#DefaultColor');
+  const [listItems, setListItems] = useState(item.listItems);
 
+  const { projectId } = useParams();
   const cardRef = useRef();
 
   const toggleCard = () => {
@@ -29,6 +32,17 @@ const CardDemo = ({ item }) => {
     setIsClicked(false);
   }
 
+  const handleItemClick = (clickedItem) => {
+    // Update the isDone property of the clickedItem
+    clickedItem.isDone = !clickedItem.isDone;
+
+    // Update the listItems state
+    setListItems(listItems.map(item => item._id === clickedItem._id ? clickedItem : item));
+
+    console.log(clickedItem.isDone)
+    //saveChanges();
+  };
+
   const saveChanges = async () => {
     const cardElement = cardRef.current;
     // objekti joka sisältää päivitettävät tiedot
@@ -36,34 +50,35 @@ const CardDemo = ({ item }) => {
       title: cardElement.querySelector('.card-title').innerText,
       description: cardElement.querySelector('.card-description').innerText,
       listItems: Array.from(cardElement.querySelectorAll('.list-group-item')).map(item => ({
-        task: item.innerText,
-        isDone: false,
+        task: item.innerText
+        //isDone Boolean tallennus myös 
       })),
     };
+
 
     console.log(updatedData); // logita päivitettävät tiedot
 
     try {
       await axios.patch(`http://localhost:8123/card/update-card/${item._id}`,
-       updatedData,
-       {
-        withCredentials: true,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-        }
-      });
+        updatedData,
+        {
+          withCredentials: true,
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+          }
+        });
       setIsEditMode(false);
       // emittaa tieto että projekti on päivitetty
       //TODO: tämä saattaa muuttua kun projektisivu tulee käyttöön
-      socket.emit("project:update");
+      socket.emit("project:update", projectId);
     } catch (error) {
       console.error('Virhe tallennettaessa muutoksia:', error);
     }
   };
 
 
-return (
-<div className="row card-row">
+  return (
+    <div className="row card-row">
       <div className="col-md-9 custom-card-column">
         <div className={`card custom-card ${isClicked ? 'card-active' : ''}`} ref={cardRef}>
           <div className="card-header color" style={{ backgroundColor: headerColor }} onClick={toggleCard}>
@@ -76,7 +91,7 @@ return (
                 <button
                   className='btn editCardButton'
                   onClick={(event) => {
-                    event.stopPropagation(); 
+                    event.stopPropagation();
                     openEditMode();
                   }}
                 >
@@ -92,7 +107,14 @@ return (
               <div>
                 <ul className="list-group list-group-flush">
                   {item.listItems.map((item) => (
-                    <li key={item._id} className={`list-group-item ${isEditMode ? 'editablecontent active-field list-group-item' : ''}`} contentEditable={isEditMode}>{item.task}</li>
+                    <li
+                      key={item._id}
+                      className={`list-group-item ${isEditMode ? 'editablecontent active-field' : item.isDone ? 'crossed-out' : ''}`}
+                      contentEditable={isEditMode}
+                      onClick={isEditMode ? null : () => handleItemClick(item)}
+                    >
+                      {item.task}
+                    </li>
                   ))}
                 </ul>
 
@@ -110,7 +132,7 @@ return (
         </div>
       </div>
       <div className="col-md-3">
-      {isEditMode && <EditTools onColorChange={setHeaderColor} />} 
+        {isEditMode && <EditTools onColorChange={setHeaderColor} />}
 
       </div>
     </div>
