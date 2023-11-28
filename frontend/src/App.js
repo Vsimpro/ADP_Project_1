@@ -71,7 +71,7 @@ function App() {
           <Route path="/" element={isLoggedIn ? <ProjectPage userId={userId} HOST={HOST} PORT={PORT} /> : <Navigate to="/login" />} />
           <Route path="/create" element={<Create userId={userId} HOST={HOST} PORT={PORT} />} />
           <Route path="/profile" element={<Profile userId={userId} HOST={HOST} PORT={PORT} />} />
-          <Route path="/project" element={<ProjectPage userId={userId} HOST={HOST} PORT={PORT} />} />
+          <Route path="/cards" element={<CardList userId={userId} HOST={HOST} PORT={PORT} />} />
         </Routes>
       </div>
     </Router>

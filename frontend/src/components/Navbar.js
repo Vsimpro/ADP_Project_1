@@ -10,7 +10,7 @@ function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/project">Home</a>
+          <a className="navbar-brand" href="/">Home</a>
 
           <button
             className="navbar-toggler"
@@ -28,7 +28,7 @@ function Navbar() {
             <ul className="navbar-nav">
              
               <li className='nav-item'>
-              <a className="nav-link" href="/">Cards</a>
+              <a className="nav-link" href="/cards">Cards</a>
               </li>
               <li className='nav-item'>
               <a className="nav-link" href="/create">Create New</a>
