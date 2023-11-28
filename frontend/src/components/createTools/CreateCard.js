@@ -3,6 +3,7 @@ import './CreateCard.css';
 import trashIcon from "../../icons/trash-solid.svg";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import socket from '../../controller/socket.js';
 
 const CreateCard = ({ headerColor }) => {
   const cardRef = useRef();
@@ -38,7 +39,7 @@ const CreateCard = ({ headerColor }) => {
         });
       // emittaa tieto että projekti on päivitetty
       //TODO: tämä saattaa muuttua kun projektisivu tulee käyttöön
-      //socket.emit("project:update");
+      socket.emit("project:update", projectId);
     } catch (error) {
       console.error('Virhe tallennettaessa:', error);
     }

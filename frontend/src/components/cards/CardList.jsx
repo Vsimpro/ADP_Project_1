@@ -10,8 +10,10 @@ const CardList = ({ userId, HOST, PORT }) => {
   const { projectId } = useParams();
 
   const fetchCards = useFetchCards(true, projectId, setListData, HOST, PORT);
+  
 
   useEffect(() => {
+    socket.emit('join', projectId);
     const handleProjectUpdated = () => {
       fetchCards();
     };
@@ -21,7 +23,7 @@ const CardList = ({ userId, HOST, PORT }) => {
     return () => {
       socket.off("project:updated", handleProjectUpdated);
     };
-  }, [fetchCards]);
+  }, [fetchCards, projectId]);
 
   return (
     <div className="container">

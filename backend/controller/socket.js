@@ -2,16 +2,16 @@ export const handleSocketConnections = (io) => {
   io.on("connection", (socket) => {
     console.log("[*] Socket.io: User connected. ID: " + socket.id);
 
-    socket.on("project:join", (projectID) => {
-      socket.join(projectID);
-      console.log("[*] Socket.io: User: " + socket.id + " joined project: " + projectID);
+    socket.on('join', (projectId) => {
+      socket.join(projectId);
+      console.log(socket.id + " joined " + projectId)
     });
 
     socket.on("project:update", (projectID) => {
-      socket.broadcast.emit("project:updated");
+      //socket.broadcast.emit("project:updated");
       //TODO: tällähetkellä lähettää kaikille clienteille viestin
       // muokkaa tämä käyttämään projectID:n mukaisia roomeja kun projektisivu on valmis
-      //socket.to(projectID).emit("project:updated");
+      socket.in(projectID).emit("project:updated");
       console.log("[*] Socket.io: Project: " + projectID + " updated");
     });
 
