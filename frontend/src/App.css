@@ -1,17 +1,78 @@
-.navbar{
-    padding: 20px;
+body {
+  font-family: 'Montserrat', sans-serif;
+  /* background-color: #032838 !important; */
+  background: linear-gradient(to bottom, #005A84, #022D4C, #072B3A);
+
+}
+.container {
+  max-width: 80%;
+  min-width: 300px;
+  padding: 60px 0px;
+  background-color: #ffffff;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
+  height: 100%;
 }
 
-/* Korttiin liittyvät muotoilut */
-.card{
-    margin: 20px 0;
+.main-content {
+  display: flex;
+  justify-content: center;
+
 }
-.centered-elements{
-    display: flex;
-    justify-content: center;
+
+.App {
+  /* text-align: center; */
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
 }
-.centered-elements button {
-    margin-right: 10px;
-    width: 120px;
-    letter-spacing: 1px;
+
+.primary-button {
+  background-color: #f5f5f5;
+  width: 240px;
+  margin: 20px;
+}
+
+.primary-button:hover{
+  background-color: #022D4C;
+}
+
+.secondary-button {
+  background-color: #f5f5f5;
+
+}
+
+
+
+
+.navbar{
+  padding: 10px 20px;
+}
+
+.navbar-brand{
+  font-size: 16px;
+}
+
+@media (max-width: 767px) {
+ 
+  body{
+      padding: 10px;
   }
+  .container {
+      margin: 10px;
+      padding: 60px 5px;
+    }
+  .card{
+    width: 100%;
+  }
+  .newCardContainer{
+    width: 100%;
+    padding: 0;
+  }
+
+  .primary-button{
+    width: 100%;
+    margin: 0px;
+  }
+}

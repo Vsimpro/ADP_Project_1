@@ -1,15 +1,14 @@
 import { Schema, model } from "mongoose";
 
 const projectSchema = new Schema({
-	name: { type: String, required: true },
-	description: { type: String, required: false },
-    columns: { type: Array, required: false },
-	owner: { type: String, required: true },
-	readWrite: { type: Array, required: true },
-	readOnly: { type: Array, required: false },
-	comments: [{ type: String, required: false }],
+    name: { type: String, required: true },
+    description: { type: String, required: false },
+    cards: { type: Array, required: false },
+    owner: { type: String, required: true },
+    members: { type: Array, required: false },
+    comments: [{ type: String, required: false }],
 }, {
-	timestamps: true, // creates createdAt and updatedAt fields automatically
+    timestamps: true, // creates createdAt and updatedAt fields automatically
 });
 
 const projectModel = model("Project", projectSchema);

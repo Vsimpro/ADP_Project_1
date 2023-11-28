@@ -1,0 +1,143 @@
+.project {
+  background-color: rgb(255, 255, 255);
+  transition: background-color 0.3s ease;
+}
+.project:hover {
+  background-color: #f5f5f5;
+}
+
+.projetContainer{
+  padding: 40px;
+}
+
+.homepage-container{
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+  background-color: #00D2FF;
+  
+
+}
+
+.largeLogo{
+  width: 200px;
+  height: 100%;
+  margin: 20px;
+}
+.centered-content {
+  text-align: center;
+}
+
+.project-header {
+/*   border-top-right-radius: 5px;
+  border-top-left-radius: 5px; */
+  width: 100%;
+  height: 38px;
+  padding: 16px;
+  display: flex;
+  align-items: center; 
+  background-color: #00ED64;
+}
+
+.project-body {
+  padding: 16px;
+  width: 100%;
+  min-height: 70px;
+}
+
+.project-description {
+  text-align: left;
+}
+
+.project-page {
+  border-radius: 10px;
+}
+
+.p-2 {
+  color: black;
+}
+
+.custom-btnColumn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .addNewProjectCard{
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  background-color: #FF8049;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 24px;
+  border: 1px solid black; 
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.3 ease;
+}
+
+.addNewProjectCard:hover{
+  background-color: #ff6522;
+  width: 120px;
+  color: #fff;
+}
+ */
+ .addNewProjectCard {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  background-color: #FF8049;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 24px;
+  border: 1px solid black;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.addNewProjectCard:hover {
+  background-color: #FF8049;
+  width: 240px;
+  color: #fff;
+}
+
+.addNewProjectCard:hover:before {
+  content: "+ Add Project";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  white-space: nowrap;
+  background-color: #FF8049;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.addNewProjectCard:before {
+  content: " "; /* Empty content to initialize the pseudo-element */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+@media (max-width: 767px) {
+   
+  .projetContainer{
+    padding: 40px 10px;
+  }
+
+
+}

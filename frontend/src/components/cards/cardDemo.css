@@ -1,0 +1,212 @@
+#cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card{
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 3px 0 rgba(0, 0, 0, 0.19);
+  border-color: #000000;
+}
+
+.card-row{
+  margin: 40px;
+  display: flex;
+  justify-content: center;
+ 
+}
+.custom-card-column{
+  max-width: 500px;
+}
+.custom-card {
+  max-width: 500px;
+  color: #000000;
+  text-align: left;
+  max-height: 200px;
+  background-color: #ffffff;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.card-active {
+  max-height: 1000px;
+}
+
+.card-select {
+    transition: border 0.15s;
+    cursor: pointer;
+    max-width: 800px;
+    min-width: 200px;
+  }
+  
+.card-select:hover {
+    border: 1px solid black;
+  }
+  
+.card-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 30px;
+  }
+  
+.card-buttons button {
+    width: 240px;
+    margin: 10px; 
+  }
+  
+.list-group-item {
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  
+.list-group-item:hover {
+      background-color: #F5F5F5;
+    }
+    
+.crossed-out {
+      text-decoration: line-through;
+      color: rgb(143, 143, 143);
+    }
+
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
+    }
+
+    .save-button{
+      background-color: #022D4C;
+      color: #ffffff;
+      width: 120px;
+      border: 0px;
+      transition: background-color 0.3s;
+      margin: 20px;
+    }
+
+    .save-button:hover{
+      background-color: #004577;
+      color: rgb(255, 255, 255);
+      
+    }
+    
+    .cancel-button{
+      width: 120px;
+    }
+
+    .cancel-button:hover{
+      background-color: #022D4C;
+      color: rgb(255, 255, 255);
+    }
+
+  .card-header.color{
+    background-color: rgb(169, 159, 255);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  
+  }
+  .card-header.color:hover{
+    background-image: linear-gradient(rgba(240, 240, 240, 0.4), rgba(252, 252, 252, 0.4));
+    background-repeat: no-repeat;
+    background-size: 100% 100%, auto;
+  }
+
+  .header-text{
+    font-size: 16px;
+
+  }
+  .editablecontent {
+    transition: all 0.3s ease;
+  }
+
+  .editablecontent.active-field {
+    background-color: rgb(255, 255, 255);
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  .editablecontent.active-field:hover {
+    background-color: #e6e6e6
+  }
+  
+  .list-group-item:hover {
+      background-color: #F5F5F5;
+    }
+
+  .edit-mode {
+    display: grid;
+    grid-template-columns: 75% 25%;
+    grid-gap: 0px; 
+  }
+  .card-header {
+    grid-column: span 2; 
+  }
+
+  .editCardButton {
+    background-image: url('../../../public/icons/edit-icon-03.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .editCardButton:hover {
+    opacity: 0.6;
+  }
+
+  .formGroup{
+      text-align: left;
+      margin-top: 60px;
+      padding: 40px;
+      color: black;
+      border: 1px solid #b4b4b4;
+      border-radius: 10px; 
+      background-color: #ffffff;
+    }
+      .formGroup form{
+        margin-bottom: 40px;
+
+      }
+
+      .formGroup label{
+        padding: 0;
+      }
+
+
+
+    .btn-secondary{
+      width: 240px;
+    }
+  
+    .btn-editTools{
+      margin-top: 10px;
+      width: 100%;
+      background-color: #6c757d;
+      font-size: 12px;
+      color: #ffffff;
+    }
+
+    @media (max-width: 767px) {
+   
+      .card-row{
+        margin: 40px 0px;
+      }
+
+      .buttons-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    
+      .save-button,
+      .cancel-button {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }

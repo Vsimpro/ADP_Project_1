@@ -1,0 +1,187 @@
+.floatingContainer{ 
+  width: 768px;  
+  padding: 20px;
+  text-align: left;
+  position: fixed;
+  top: 100px;
+  /* right: 140px; */
+ 
+}
+.card-body {
+  max-height: 70vh;
+  overflow: auto;
+}
+.createCard.card {
+    color: #000000;
+    max-width: 600px;
+    text-align: left;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .card-header.custom-header{
+    background-color: #ececec;
+    height: 38px;
+    
+  }
+
+  .whiteHeading{
+    color: #fff;
+  }
+
+  .btn-deleteTask {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 100px;
+  }
+  
+  .trash-icon {
+    fill: #fff;
+    height: 15px;
+    width: auto;
+  }
+
+  hr{
+    background-color: #fff;
+    margin: 24px;
+  }
+
+  .editToolsContainer{
+    color: #000000;
+    background-color: rgb(255, 255, 255) !important;
+    text-align: left;
+    margin-bottom: 20px;
+    width: 150px;
+    border-radius: 5px !important;
+    border: 1px solid #000;
+    padding: 10px;
+ 
+  }
+  .membersButton{
+    width: 90%;
+    margin: 5px;
+  }
+  .colorButton{
+    width: 90%;
+    height: 30px;
+    margin: 5px;
+    cursor: pointer;
+
+  }
+  .colorButton:hover{
+   opacity: 60%;
+
+  }
+
+  .newCardContainer{
+    max-width: 800px;
+    text-align: left;
+    padding: 40px 0;
+    margin: 20p 0x;
+  
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .close-button {
+    font-size: 20px;
+    cursor: pointer;
+    color: black;
+  }
+
+  .custom-column {
+    margin: 0;
+    max-width: 600px;
+  }
+
+    .testicontainer {
+      position: fixed;
+      bottom: 0%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+    
+    }
+
+    
+  .addNewCardButton{
+    position: fixed;
+    top: 100px;
+    right: 150px;
+    z-index: 99;
+    width: 60px;
+    height: 60px;
+    border-radius: 100px;
+    background-color: #FF8049;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 24px;
+    border: 1px solid black;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+    
+  }
+
+  .addNewCardButton:hover{
+    background-color: #ff5810;
+    color: #fff;
+  }
+
+  @media (max-width: 767px) {
+   
+    .editToolsContainer{
+      width: 100%;
+      border: 0px;
+      margin-bottom: 10px;
+    }
+    .floatingElements{
+      width: 100%;
+    }
+    .addNewCardButton{
+      visibility: hidden;
+    }
+    .floatingContainer{ 
+      width: 90%;  
+      padding: 20px;
+      text-align: left;
+      position: auto;
+      top: auto;
+      right: auto;
+     
+    }
+    .newCardContainer{
+      max-width: 800px;
+      text-align: left;
+      padding: 10px;
+      background-color: #f5f5f500;
+      border: 0px solid #000;
+    }
+
+    .membersButton{
+      width: 120px;
+
+    }
+    .colorButton{
+      width: 30px;
+      height: 30px;
+  
+    }
+
+    .buttons-container{
+      padding: 10px;
+    }
+
+
+  }

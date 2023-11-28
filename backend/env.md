@@ -4,4 +4,5 @@
 HOST = "localhost"
 PORT = "8123"
 MONGODB_URI = "mongodb://localhost:27017/"
+SECRET = "secret"
 
