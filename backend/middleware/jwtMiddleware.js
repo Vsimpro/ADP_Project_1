@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 //TODO: Switch to process.env
-const SECRET = 'secret'
+const SECRET = process.env.SECRET;
 
 /* Helper functions */
 // Check if token is 'null', 'undefined' or ''.
