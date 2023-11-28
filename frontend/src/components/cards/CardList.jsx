@@ -27,9 +27,8 @@ const CardList = ({ userId, HOST, PORT }) => {
         {listData.map((item, index) => (
           <CardDemo key={index} item={item} />
         ))}
-         <AddNewCardButton />
       </div>
-     
+        <AddNewCardButton />
     </div>
   );
 };

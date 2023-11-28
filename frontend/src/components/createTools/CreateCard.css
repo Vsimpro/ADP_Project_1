@@ -4,7 +4,7 @@
   text-align: left;
   position: fixed;
   top: 100px;
-  right: 140px;
+  /* right: 140px; */
  
 }
 .createCard.card {
@@ -39,20 +39,6 @@
     height: 15px;
     width: auto;
   }
-/* 
-  .btn-createCard {
-    width: 240px;
-    color: #fff;
-    background-color: rgb(169, 159, 255);
-    border-color: rgb(169, 159, 255);
-    margin: 20px;
-  }
-
-  .btn-creteCard.save:hover{
-    color: #fff;
-    background-color: rgb(138, 125, 255);
-    border-color: rgb(138, 125, 255);
-  } */
 
   hr{
     background-color: #fff;
@@ -100,7 +86,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* 50% black overlay */
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,11 +103,15 @@
     max-width: 600px;
   }
 
-  .addNewCardButton-container{
+    .testicontainer {
       position: fixed;
-      bottom: 40px;
-      right: 40px;
+      bottom: 0%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+    
     }
+
     
   .addNewCardButton{
     position: fixed;
@@ -141,7 +131,7 @@
   }
 
   .addNewCardButton:hover{
-    background-color: #FFC010;
+    background-color: #ff5810;
     color: #fff;
   }
 
