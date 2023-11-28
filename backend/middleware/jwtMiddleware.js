@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 //TODO: Switch to process.env
-const SECRET = 'secret'
+const SECRET = process.env.SECRET;
 
 /* Helper functions */
 // Check if token is 'null', 'undefined' or ''.
@@ -19,7 +19,7 @@ function tokenNotNull( token ) {
 /* Exported functions */
 const generateJWT = (id) => { 
     var token = jwt.sign({
-        exp: Math.floor(Date.now() / 1000) + (60 * 60),
+        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 168),
         data: {
             _id : id
         }
