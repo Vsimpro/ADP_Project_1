@@ -11,6 +11,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid black;
+  min-height: 120px;
+  background-color: #e6f4f7;
 }
 .centered-content {
   text-align: center;
@@ -24,7 +27,7 @@
   padding: 16px;
   display: flex;
   align-items: center; 
-  background-color: rgb(201, 239, 153);
+  background-color: #00ED64;
 }
 
 .project-body {
@@ -51,21 +54,71 @@
   align-items: center;
 }
 
-.addNewProjectCard{
+/* .addNewProjectCard{
   width: 60px;
   height: 60px;
   border-radius: 100px;
-  background-color: rgb(169, 159, 255);
+  background-color: #FF8049;
   color: rgb(255, 255, 255);
   cursor: pointer;
   font-size: 24px;
-  /* border: 1px solid black; */
+  border: 1px solid black; 
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.3 ease;
 }
 
 .addNewProjectCard:hover{
-background-color: rgb(138, 125, 255);
-color: #fff;
+  background-color: #ff6522;
+  width: 120px;
+  color: #fff;
+}
+ */
+ .addNewProjectCard {
+  width: 60px;
+  height: 60px;
+  border-radius: 100px;
+  background-color: #FF8049;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-size: 24px;
+  border: 1px solid black;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.addNewProjectCard:hover {
+  background-color: #FF8049;
+  width: 240px;
+  color: #fff;
+}
+
+.addNewProjectCard:hover:before {
+  content: "+ Add Project";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  white-space: nowrap;
+  background-color: #FF8049;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.addNewProjectCard:before {
+  content: " "; /* Empty content to initialize the pseudo-element */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 

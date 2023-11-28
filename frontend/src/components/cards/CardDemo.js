@@ -99,8 +99,8 @@ return (
                 <div className='buttons-container'>
                   {isEditMode ? (
                     <div>
-                      <button className='btn demobtn save' onClick={saveChanges}>Save</button>
-                      <button className='btn btn-outline-dark demobtn' onClick={closeEditMode}>Close</button>
+                      <button className='btn btn-outline-dark save-button' onClick={saveChanges}>Save</button>
+                      <button className='btn cancel-button' onClick={closeEditMode}>Close</button>
                     </div>
                   ) : null}
                 </div>

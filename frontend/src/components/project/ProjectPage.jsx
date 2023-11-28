@@ -40,14 +40,15 @@ const ProjectPage = ({ userId, HOST, PORT }) => {
     <div className='container'>
       <div className="homepage-container">
         <div className="centered-content">
-          <img src={process.env.PUBLIC_URL + '/logos/logo-01.png'} alt="Your Logo" />
           <br />
+          <h3>DODO</h3>
           <p>(Tähän jotain etusivun contenttii esim logo ja muuta tekstii 😀)</p>
         </div>
       </div>
 
         <div className="projetContainer">
           <h3>Projects</h3>
+          <hr />
           <div className="projects-container row g-3">
             {projectData.map((project, index) => (
               <Project key={index} item={project} />
