@@ -7,6 +7,10 @@
   /* right: 140px; */
  
 }
+.card-body {
+  max-height: 70vh;
+  overflow: auto;
+}
 .createCard.card {
     color: #000000;
     max-width: 600px;

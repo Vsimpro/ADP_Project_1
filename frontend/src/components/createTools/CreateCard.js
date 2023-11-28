@@ -8,7 +8,7 @@ const CreateCard = ({ headerColor }) => {
   const cardRef = useRef();
   const [listItems, setListItems] = useState([""]);
   const userId = JSON.parse(localStorage.getItem('id'));
- const {projectId} = useParams();
+  const { projectId } = useParams();
   // getCookie = (name) {
   //   const cookieArray = document.cookie.split(';');
   //   for (let i = 0; i < cookieArray.length; i++){
@@ -66,7 +66,7 @@ const CreateCard = ({ headerColor }) => {
   return (
     <div className='createCard'>
       <div className='card'>
-        <div className='card-header custom-header' style={{ backgroundColor: headerColor }}> 
+        <div className='card-header custom-header' style={{ backgroundColor: headerColor }}>
         </div>
         <div className='card-body'>
           <form>
@@ -80,21 +80,21 @@ const CreateCard = ({ headerColor }) => {
               <label>List items</label>
               {listItems.map((item, index) => (
                 <div key={index} className='row flex-nowrap'>
-                <div className='col-10'>
-                  <input
-                    type='text'
-                    className='form-control'
-                    placeholder='Add list items...'
-                    value={item}
-                    onChange={(event) => handleListItemChange(event, index)}
-                  />
+                  <div className='col-10'>
+                    <input
+                      type='text'
+                      className='form-control'
+                      placeholder='Add list items...'
+                      value={item}
+                      onChange={(event) => handleListItemChange(event, index)}
+                    />
+                  </div>
+                  <div className='col-2 d-flex justify-content-end custom-column'>
+                    <button className='btn btn-secondary btn-deleteTask' onClick={(event) => handleDeleteListItem(event, index)}>
+                      <img className='trash-icon' src={trashIcon} alt='delete' />
+                    </button>
+                  </div>
                 </div>
-                <div className='col-2 d-flex justify-content-end custom-column'>
-                  <button className='btn btn-secondary btn-deleteTask' onClick={(event) => handleDeleteListItem(event, index)}>
-                    <img className='trash-icon' src={trashIcon} alt='delete' />
-                  </button>
-                </div>
-              </div>
               ))}
 
               <button type='button' className='btn btn-outline-dark' onClick={addNewListItem}>Add New</button>
