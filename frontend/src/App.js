@@ -68,7 +68,7 @@ function App() {
         {isLoggedIn ? <Navbar /> : null}
         <Routes>
           <Route path="/login" element={loginElement} />
-          <Route path="/" element={isLoggedIn ? <CardList userId={userId} HOST={HOST} PORT={PORT} /> : <Navigate to="/login" />} />
+          <Route path="/" element={isLoggedIn ? <ProjectPage userId={userId} HOST={HOST} PORT={PORT} /> : <Navigate to="/login" />} />
           <Route path="/create" element={<Create userId={userId} HOST={HOST} PORT={PORT} />} />
           <Route path="/profile" element={<Profile userId={userId} HOST={HOST} PORT={PORT} />} />
           <Route path="/project" element={<ProjectPage userId={userId} HOST={HOST} PORT={PORT} />} />
