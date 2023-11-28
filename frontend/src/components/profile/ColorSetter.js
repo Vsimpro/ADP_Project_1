@@ -18,11 +18,11 @@ const ColorSetter = ({userInitials}) => {
       <div className='row'>
   
         <div className='d-flex justify-content-center align-items-center'>
-          <button className='btn colors' style={{ backgroundColor: '#E85B6F' }} onClick={() => handleColorChange('#E85B6F')}></button>
-          <button className='btn colors' style={{ backgroundColor: '#3F75C7' }} onClick={() => handleColorChange('#3F75C7')}></button>
-          <button className='btn colors' style={{ backgroundColor: '#5BB5E8' }} onClick={() => handleColorChange('#5BB5E8')}></button>
-          <button className='btn colors' style={{ backgroundColor: '#5BE8C6' }} onClick={() => handleColorChange('#5BE8C6')}></button>
-          <button className='btn colors' style={{ backgroundColor: '#FFAB2D' }} onClick={() => handleColorChange('#FFAB2D')}></button>
+          <button className='btn colors' style={{ backgroundColor: '#00D2FF' }} onClick={() => handleColorChange('#00D2FF')}></button>
+          <button className='btn colors' style={{ backgroundColor: '#00D9C6' }} onClick={() => handleColorChange('#00D9C6')}></button>
+          <button className='btn colors' style={{ backgroundColor: '#C980DA' }} onClick={() => handleColorChange('#C980DA')}></button>
+          <button className='btn colors' style={{ backgroundColor: '#FFC010' }} onClick={() => handleColorChange('#FFC010')}></button>
+          <button className='btn colors' style={{ backgroundColor: '#79F200' }} onClick={() => handleColorChange('#79F200')}></button>
         </div>
       </div>
     </div>

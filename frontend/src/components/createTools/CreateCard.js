@@ -102,7 +102,7 @@ const CreateCard = ({ headerColor }) => {
         </div>
         <div>
           <div className='buttons-container'>
-            <button className='btn btn-createCard' onClick={saveCardToDb}>Create</button>
+            <button className='btn btn-outline-dark primary-button' onClick={saveCardToDb}>Create</button>
           </div>
         </div>
       </div>

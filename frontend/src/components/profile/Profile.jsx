@@ -76,14 +76,14 @@ const Profile = ({ userId, HOST, PORT }) => {
 
             <label>Password</label>
             <input type="text" className="form-control" placeholder='************' />
-            <button className='btn btn-outline-dark' onClick={handlePasswordChange}>
+            <button className='btn btn-outline-dark secondary-button' onClick={handlePasswordChange}>
               Change
             </button>
           </div>
 
           <hr className="my-4" />
           <div className='buttons-container'>
-            <button className='btn btn-profile save' onClick={handleSaveProfile}>
+            <button className='btn btn-outline-dark primary-button' onClick={handleSaveProfile}>
               Save
             </button>
 

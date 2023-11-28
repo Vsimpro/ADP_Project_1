@@ -15,15 +15,16 @@ const EditTools = ({ onColorChange }) => {
       </div>
       <div className='row'>
         <div className='col justify-content-center'>
-          <button className='btn colorButton' style={{ backgroundColor: '#FA9797' }} onClick={() => handleColorChange('#FA9797')}></button>
-          <button className='btn colorButton' style={{ backgroundColor: '#EFE699' }} onClick={() => handleColorChange('#EFE699')}></button>
-          <button className='btn colorButton' style={{ backgroundColor: '#C9EF99' }} onClick={() => handleColorChange('#C9EF99')}></button>
+          <button className='btn colorButton' style={{ backgroundColor: '#FF8049' }} onClick={() => handleColorChange('#FF8049')}></button>
+          <button className='btn colorButton' style={{ backgroundColor: '#FFE212' }} onClick={() => handleColorChange('#FFE212')}></button>
+          <button className='btn colorButton' style={{ backgroundColor: '#00ED64' }} onClick={() => handleColorChange('#00ED64')}></button>
+          <button className='btn colorButton' style={{ backgroundColor: '#C980DA' }} onClick={() => handleColorChange('#C980DA')}></button>
           <button className='btn colorButton' style={{ backgroundColor: '#A99FFF' }} onClick={() => handleColorChange('#A99FFF')}></button>
         </div>
       </div>
       <div className='row'>
         <div className='col d-flex justify-content-left'>
-          <button className='btn btn-outline-dark membersButton'>Members</button>
+          <button className='btn btn-outline-dark secondary-button membersButton'>Members</button>
         </div>
       </div>
     </div>
