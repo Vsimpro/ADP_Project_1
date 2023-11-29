@@ -29,10 +29,10 @@ const CardList = ({ userId, HOST, PORT }) => {
     <div className="container">
       <div className="cards-container">
         {listData.map((item, index) => (
-          <CardDemo key={index} item={item} />
+          <CardDemo key={index} item={item} HOST={HOST} PORT={PORT}/>
         ))}
       </div>
-        <AddNewCardButton />
+        <AddNewCardButton HOST={HOST} PORT={PORT} />
     </div>
   );
 };

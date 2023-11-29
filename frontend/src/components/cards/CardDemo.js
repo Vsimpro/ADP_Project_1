@@ -5,7 +5,7 @@ import EditTools from '../createTools/EditTools';
 import { useParams } from 'react-router-dom';
 
 
-const CardDemo = ({ item }) => {
+const CardDemo = ({ item, HOST, PORT }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [headerColor, setHeaderColor] = useState('#DefaultColor');
@@ -59,7 +59,7 @@ const CardDemo = ({ item }) => {
     console.log(updatedData); // logita päivitettävät tiedot
 
     try {
-      await axios.patch(`http://localhost:8123/card/update-card/${item._id}`,
+      await axios.patch(`http://${HOST}:${PORT}/card/update-card/${item._id}`,
         updatedData,
         {
           withCredentials: true,
