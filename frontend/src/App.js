@@ -51,9 +51,9 @@ function App() {
   if (isLoggedIn) {
     loginElement = <Navigate to="/" />;
   } else if (currentForm === 'login') {
-    loginElement = <LoginPage setIsLoggedIn={setisLoggedIn} onFormSwitch={handleLoginFormSwitch} />;
+    loginElement = <LoginPage setIsLoggedIn={setisLoggedIn} onFormSwitch={handleLoginFormSwitch} HOST={HOST} PORT={PORT}/>;
   } else {
-    loginElement = <Register setIsLoggedIn={setisLoggedIn} onFormSwitch={handleLoginFormSwitch} />;
+    loginElement = <Register setIsLoggedIn={setisLoggedIn} onFormSwitch={handleLoginFormSwitch} HOST={HOST} PORT={PORT}/>;
   }
 
   useEffect(() => {

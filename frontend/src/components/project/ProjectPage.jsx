@@ -66,7 +66,7 @@ const ProjectPage = ({ userId, HOST, PORT }) => {
           </div>
         </div>
       </div>
-      {isModalOpen && <FloatingElements onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && <FloatingElements onClose={() => setIsModalOpen(false)} HOST={HOST} PORT={PORT}/>}
     </div>
   );
 };
