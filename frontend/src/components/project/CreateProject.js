@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import './CreateProject.css';
 import axios from 'axios';
 
-const CreateProject = ({ headerColor }) => {
+const CreateProject = ({ headerColor, HOST, PORT}) => {
   const projectRef = useRef();
   const userId = JSON.parse(localStorage.getItem('id'));
 
@@ -18,7 +18,7 @@ const CreateProject = ({ headerColor }) => {
     console.log(projectData);
     // TODO lomakkeen tietojen tallennus tietokantaan
     try {
-      await axios.post(`http://localhost:8123/project/create-project/`,
+      await axios.post(`http://${HOST}:${PORT}/project/create-project/`,
         projectData,
         {
           withCredentials: true,

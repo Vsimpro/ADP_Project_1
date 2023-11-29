@@ -31,7 +31,7 @@ import CreateProject from './CreateProject';
 import EditTools from '../createTools/EditTools';
 //import './CreateCard.css';
 
-const FloatingElements = ({ onClose }) => {
+const FloatingElements = ({ onClose, HOST, PORT}) => {
   const [headerColor, setHeaderColor] = useState('#FA9797');
 
 
@@ -45,7 +45,7 @@ const FloatingElements = ({ onClose }) => {
             <EditTools onColorChange={setHeaderColor} />
           </div>
           <div className="col-md-9 col-12 order-md-1 custom-column">
-            <CreateProject headerColor={headerColor} />
+            <CreateProject headerColor={headerColor} HOST={HOST} PORT={PORT}/>
           </div>
         </div>
       </div>
