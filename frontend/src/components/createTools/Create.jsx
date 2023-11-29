@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import EditTools from './EditTools';
 import CreateCard from './CreateCard';
 
-const Create = () => {
+const Create = ({ HOST, PORT }) => {
   const [headerColor, setHeaderColor] = useState('#FA9797');
 
   return (
@@ -15,7 +15,7 @@ const Create = () => {
             <EditTools onColorChange={setHeaderColor} />
           </div>
           <div className="col-md-9 col-12 order-md-1 custom-column">
-            <CreateCard headerColor={headerColor} />
+            <CreateCard headerColor={headerColor} HOST={HOST} PORT={PORT}/>
           </div>
         </div>
       </div>

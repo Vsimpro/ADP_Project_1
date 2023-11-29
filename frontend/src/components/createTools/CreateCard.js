@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import socket from '../../controller/socket.js';
 
-const CreateCard = ({ headerColor }) => {
+const CreateCard = ({ headerColor, HOST, PORT}) => {
   const cardRef = useRef();
   const [listItems, setListItems] = useState([""]);
   const userId = JSON.parse(localStorage.getItem('id'));
@@ -29,7 +29,7 @@ const CreateCard = ({ headerColor }) => {
     console.log(cardData);
     // TODO lomakkeen tietojen tallennus tietokantaan
     try {
-      await axios.post(`http://localhost:8123/card/create-card/`,
+      await axios.post(`http://${HOST}:${PORT}/card/create-card/`,
         cardData,
         {
           withCredentials: true,
